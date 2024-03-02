@@ -1,3 +1,4 @@
+import 'package:car_sale_firebase/view/admin_login.dart';
 import 'package:car_sale_firebase/view/welcome_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -13,6 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: WelcomeScreen(),
+      // home: AdminLoginScreen(),
     );
   }
 }

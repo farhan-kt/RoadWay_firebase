@@ -1,9 +1,9 @@
 import 'package:car_sale_firebase/view/register_screen.dart';
 import 'package:car_sale_firebase/widget/bottom_screen.dart';
 import 'package:car_sale_firebase/widget/button_widget.dart';
+import 'package:car_sale_firebase/widget/textformfield_widget.dart';
 import 'package:car_sale_firebase/widget/textstyle_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
@@ -22,28 +22,18 @@ class LoginScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              textPoppins(
-                name: 'RoadWay',
-                fontsize: 25,
-                fontweight: FontWeight.w600,
-              ),
-              textAbel(
-                  name: 'M  O  T  O  R  S',
-                  fontsize: 17,
-                  fontweight: FontWeight.w800),
-              SizedBox(
-                height: size.height * .2,
-              ),
+              Image.asset('assets/RoadWay.png'),
               SizedBox(
                 height: size.height * 0.5,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    TextField(
-                      decoration: InputDecoration(border: OutlineInputBorder()),
-                    ),
-                    TextField(
-                      decoration: InputDecoration(border: OutlineInputBorder()),
+                    CustomTextFormField(
+                        labelText: 'Email', controller: emailController),
+                    CustomTextFormField(
+                      labelText: 'password',
+                      controller: passwordController,
+                      obscureText: true,
                     ),
                     ButtonWidgets().rectangleButton(size,
                         name: 'LOGIN',
@@ -52,8 +42,10 @@ class LoginScreen extends StatelessWidget {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => BottomScreen()));
-                    }),
+                              builder: (context) => const BottomScreen()));
+                    },
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(color: Colors.black, width: 3)),
                     textPoppins(name: '-- or Login with --'),
                   ],
                 ),

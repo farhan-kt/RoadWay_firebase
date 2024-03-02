@@ -45,15 +45,24 @@ class RegisterScreen extends StatelessWidget {
                     CustomTextFormField(
                         labelText: 'Email', controller: emailController),
                     CustomTextFormField(
-                        labelText: 'Password', controller: passwordController),
+                      labelText: 'Password',
+                      controller: passwordController,
+                      obscureText: true,
+                    ),
                     CustomTextFormField(
-                        labelText: 'Confirm password',
-                        controller: confirmPasswordController),
-                    ButtonWidgets().rectangleButton(size,
-                        name: 'Register',
-                        onPressed: () {},
-                        bgColor: Colors.black,
-                        fgColor: Colors.white)
+                      labelText: 'Confirm password',
+                      controller: confirmPasswordController,
+                      obscureText: true,
+                    ),
+                    ButtonWidgets().rectangleButton(
+                      size,
+                      name: 'Register',
+                      onPressed: () {},
+                      bgColor: Colors.black,
+                      fgColor: Colors.white,
+                      borderRadius: BorderRadius.circular(10),
+                      border: Border.all(color: Colors.black, width: 3),
+                    )
                   ],
                 ),
               ),

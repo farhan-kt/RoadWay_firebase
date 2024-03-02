@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ButtonWidgets {
@@ -7,8 +6,14 @@ class ButtonWidgets {
       {required String name,
       required VoidCallback? onPressed,
       required Color bgColor,
-      required Color fgColor}) {
-    return SizedBox(
+      required Color fgColor,
+      borderRadius,
+      border}) {
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: borderRadius,
+        border: border,
+      ),
       height: size.height * .08,
       width: size.width * double.infinity,
       child: ElevatedButton(
