@@ -35,10 +35,8 @@ class LoginScreen extends StatelessWidget {
                       controller: passwordController,
                       obscureText: true,
                     ),
-                    ButtonWidgets().rectangleButton(size,
-                        name: 'LOGIN',
-                        bgColor: Colors.black,
-                        fgColor: Colors.white, onPressed: () {
+                    ButtonWidgets().rectangleButton(size, name: 'LOGIN',
+                        onPressed: () {
                       Navigator.push(
                           context,
                           MaterialPageRoute(

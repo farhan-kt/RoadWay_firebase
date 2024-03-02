@@ -12,6 +12,10 @@ class AdminLoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+
+    const OutlineInputBorder inputBorderColor = OutlineInputBorder(
+      borderSide: BorderSide(color: Colors.black),
+    );
     return Scaffold(
       body: Center(
         child: Padding(
@@ -40,19 +44,24 @@ class AdminLoginScreen extends StatelessWidget {
                       ],
                     ),
                     CustomTextFormField(
-                        labelText: 'Admin Key', controller: adminController),
+                        labelText: 'Admin Key',
+                        controller: adminController,
+                        enabledBorder: inputBorderColor,
+                        focusedBorder: inputBorderColor,
+                        focusErrorBorder: inputBorderColor),
                     CustomTextFormField(
                       labelText: 'Password',
                       controller: adminPassController,
                       obscureText: true,
+                      enabledBorder: inputBorderColor,
+                      focusedBorder: inputBorderColor,
+                      focusErrorBorder: inputBorderColor,
                     ),
-                    ButtonWidgets().rectangleButton(size,
-                        name: 'Submit',
-                        onPressed: () {},
-                        bgColor: Colors.black,
-                        fgColor: Colors.white,
-                        borderRadius: BorderRadius.circular(10),
-                        border: Border.all(color: Colors.black, width: 2))
+                    ButtonWidgets().rectangleButton(
+                      size,
+                      name: 'Submit',
+                      onPressed: () {},
+                    )
                   ],
                 ),
               ),

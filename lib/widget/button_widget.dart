@@ -5,22 +5,53 @@ class ButtonWidgets {
   Widget rectangleButton(Size size,
       {required String name,
       required VoidCallback? onPressed,
-      required Color bgColor,
-      required Color fgColor,
-      borderRadius,
-      border}) {
+      Color? bgColor,
+      Color? fgColor,
+      BorderRadius? borderRadius,
+      Border? border}) {
     return Container(
       decoration: BoxDecoration(
-        borderRadius: borderRadius,
-        border: border,
+        borderRadius:
+            borderRadius ?? const BorderRadius.all(Radius.circular(10)),
+        border: border ?? Border.all(color: Colors.black, width: 2),
       ),
       height: size.height * .08,
       width: size.width * double.infinity,
       child: ElevatedButton(
         style: ButtonStyle(
           shape: const MaterialStatePropertyAll(BeveledRectangleBorder()),
-          backgroundColor: MaterialStateProperty.all(bgColor),
-          foregroundColor: MaterialStateProperty.all(fgColor),
+          backgroundColor: MaterialStateProperty.all(bgColor ?? Colors.black),
+          foregroundColor: MaterialStateProperty.all(fgColor ?? Colors.white),
+        ),
+        onPressed: onPressed,
+        child: Text(name,
+            style: GoogleFonts.abel(
+              fontSize: size.width * .05,
+              fontWeight: FontWeight.bold,
+            )),
+      ),
+    );
+  }
+
+  Widget imageButton(
+    Size size, {
+    required String name,
+    required VoidCallback? onPressed,
+    double? height,
+    double? width,
+  }) {
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: const BorderRadius.all(Radius.circular(10)),
+        border: Border.all(color: Colors.black, width: 2),
+      ),
+      height: height ?? size.height,
+      width: width ?? size.width,
+      child: ElevatedButton(
+        style: ButtonStyle(
+          shape: const MaterialStatePropertyAll(BeveledRectangleBorder()),
+          backgroundColor: MaterialStateProperty.all(Colors.black),
+          foregroundColor: MaterialStateProperty.all(Colors.white),
         ),
         onPressed: onPressed,
         child: Text(name,
