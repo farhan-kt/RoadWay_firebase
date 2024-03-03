@@ -40,7 +40,7 @@ class LoginScreen extends StatelessWidget {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const BottomScreen()));
+                              builder: (context) => BottomScreen()));
                     },
                         borderRadius: BorderRadius.circular(10),
                         border: Border.all(color: Colors.black, width: 3)),
