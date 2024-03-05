@@ -104,7 +104,7 @@ class AdminAddDataScreen extends StatelessWidget {
                         focusErrorBorder: inputBorderColor,
                       ),
                       CustomTextFormField(
-                        labelText: 'Showroom place',
+                        labelText: 'Car Type',
                         controller: showRoomPlaceController,
                         enabledBorder: inputBorderColor,
                         focusedBorder: inputBorderColor,

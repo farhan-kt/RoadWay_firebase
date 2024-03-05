@@ -8,11 +8,7 @@ import 'package:provider/provider.dart';
 class BottomScreen extends StatelessWidget {
   BottomScreen({super.key});
 
-  List screens = [
-    const HomeScreen(),
-    const WishListScreen(),
-    const SettingScreen()
-  ];
+  List screens = [const HomeScreen(), const WishListScreen(), SettingScreen()];
 
   @override
   Widget build(BuildContext context) {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 Widget searchTextFormField({onChanged, controller}) {
   return TextFormField(
@@ -23,5 +24,29 @@ Widget searchTextFormField({onChanged, controller}) {
         color: Colors.white,
       ),
     ),
+  );
+}
+
+Widget carDetailsText({String? value, double? fontsize, fontWeight, color}) {
+  return Row(
+    children: [
+      Text(
+        value!,
+        style: GoogleFonts.abel(
+            fontSize: fontsize,
+            fontWeight: fontWeight,
+            color: color ?? Colors.black,
+            letterSpacing: 1),
+      ),
+    ],
+  );
+}
+
+SliverGridDelegateWithFixedCrossAxisCount gridDelegate(childAspectRatio) {
+  return SliverGridDelegateWithFixedCrossAxisCount(
+    crossAxisCount: 2,
+    mainAxisSpacing: 10,
+    crossAxisSpacing: 10,
+    childAspectRatio: childAspectRatio,
   );
 }

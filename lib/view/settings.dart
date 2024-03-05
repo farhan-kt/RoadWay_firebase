@@ -1,17 +1,30 @@
+import 'package:car_sale_firebase/widget/settings_screen_widgets.dart';
+import 'package:car_sale_firebase/widget/textstyle_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class SettingScreen extends StatelessWidget {
-  const SettingScreen({super.key});
+  SettingScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    Size size = MediaQuery.of(context).size;
+    return Scaffold(
       body: Padding(
-        padding: EdgeInsets.all(12),
+        padding:
+            EdgeInsets.only(top: size.height * .08, left: size.width * .05),
         child: SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: Column(
-            children: [],
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              textPoppins(
+                name: 'Settings',
+                fontsize: 25,
+                fontweight: FontWeight.w600,
+              ),
+              buildSettingItem(icon: Icons.person, onTap: () {}, title: '')
+            ],
           ),
         ),
       ),
