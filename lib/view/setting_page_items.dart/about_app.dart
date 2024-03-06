@@ -3,7 +3,7 @@ import 'package:car_sale_firebase/widget/textstyle_widget.dart';
 import 'package:flutter/material.dart';
 
 class AboutApp extends StatelessWidget {
-  const AboutApp({Key? key}) : super(key: key);
+  const AboutApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,17 +22,17 @@ class AboutApp extends StatelessWidget {
                       onPressed: () {
                         Navigator.pop(context);
                       },
-                      icon: Icon(Icons.arrow_back_ios)),
+                      icon: const Icon(Icons.arrow_back_ios)),
                   SizedBox(
                     width: size.width * .16,
                   ),
                   textPoppins(
                       name: 'RoadWay',
-                      color: Color(0xFF00246B),
+                      color: const Color(0xFF00246B),
                       fontsize: 25,
                       fontweight: FontWeight.bold),
-                  SizedBox(width: 5),
-                  Icon(
+                  const SizedBox(width: 5),
+                  const Icon(
                     Icons.directions_car,
                     color: Color(0xFF00246B),
                   )

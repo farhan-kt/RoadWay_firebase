@@ -4,17 +4,17 @@ import 'package:car_sale_firebase/widget/home_product_details_container.dart';
 import 'package:car_sale_firebase/widget/home_widgets.dart';
 import 'package:car_sale_firebase/widget/textstyle_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: const Color(0xFF00246B),
         toolbarHeight: 170,
         title: Column(

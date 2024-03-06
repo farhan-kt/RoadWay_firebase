@@ -2,14 +2,12 @@ import 'package:car_sale_firebase/widget/textstyle_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-Widget buildSettingItem(
+Widget buildSettingItem(BuildContext context,
     {required IconData icon,
     required String title,
-    required VoidCallback? onTap}) {
+    required VoidCallback onTap}) {
   return GestureDetector(
-    onTap: () {
-      onTap;
-    },
+    onTap: onTap,
     child: Card(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
       color: Colors.black,
@@ -17,7 +15,7 @@ Widget buildSettingItem(
         padding: const EdgeInsets.all(15),
         child: Row(
           children: [
-            Icon(icon, color: Colors.orange),
+            Icon(icon, color: Colors.white),
             const SizedBox(width: 10),
             Text(
               title,
@@ -69,7 +67,8 @@ class FAQItem extends StatelessWidget {
       children: [
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
-          child: Text(answer),
+          child:
+              Text(answer, style: const TextStyle(fontWeight: FontWeight.w400)),
         ),
       ],
     );

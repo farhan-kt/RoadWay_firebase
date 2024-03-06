@@ -1,4 +1,4 @@
-import 'package:car_sale_firebase/view/login_screen.dart';
+import 'package:car_sale_firebase/view/select_login.dart';
 import 'package:car_sale_firebase/widget/button_widget.dart';
 import 'package:car_sale_firebase/widget/textstyle_widget.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +15,7 @@ class WelcomeScreen extends StatelessWidget {
           Container(
             height: size.height * 1,
             width: size.width * 1,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
                 image: DecorationImage(
                     image: AssetImage('assets/welcome_screen.png'),
                     fit: BoxFit.cover)),
@@ -45,8 +45,10 @@ class WelcomeScreen extends StatelessWidget {
                   name: 'Lets Start',
                   bgColor: Colors.white,
                   fgColor: Colors.black, onPressed: () {
-                Navigator.pushReplacement(context,
-                    MaterialPageRoute(builder: (context) => LoginScreen()));
+                Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const SelectLoginScreen()));
               }))
         ],
       ),

@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:car_sale_firebase/view/register_screen.dart';
 import 'package:car_sale_firebase/widget/bottom_screen.dart';
 import 'package:car_sale_firebase/widget/button_widget.dart';

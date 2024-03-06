@@ -19,51 +19,65 @@ class HelpCenter extends StatelessWidget {
                     onPressed: () {
                       Navigator.pop(context);
                     },
-                    icon: Icon(Icons.arrow_back_ios)),
+                    icon: const Icon(Icons.arrow_back_ios)),
                 SizedBox(
                   width: size.width * .2,
                 ),
                 textPoppins(
                     name: 'Help Center',
-                    color: Color(0xFF00246B),
+                    color: const Color(0xFF00246B),
                     fontsize: 25,
                     fontweight: FontWeight.bold)
               ],
             ),
-            ListView(
-              children: [],
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: ListView(
+                  children: [
+                    const SizedBox(height: 20),
+                    const Text(
+                      'Frequently Asked Questions',
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(height: 10),
+                    const FAQItem(
+                      question: 'How do I create an account ?',
+                      answer:
+                          'To create an account, click on the "Register" button.',
+                    ),
+                    const FAQItem(
+                      question:
+                          'How can I contact with RoadWay customer service ?',
+                      answer: 'settings -> Help Center -> Contact Information',
+                    ),
+                    const FAQItem(
+                      question: 'What payment methods do you accept ?',
+                      answer:
+                          'We accept credit/debit cards, PayPal, and bank transfers...',
+                    ),
+                    const SizedBox(height: 20),
+                    const Text(
+                      'Contact Information',
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(height: 5),
+                    ListTile(
+                      leading: const Icon(Icons.email),
+                      title: const Text('Email: RoadWay@gmail.com'),
+                      onTap: () {},
+                    ),
+                    ListTile(
+                      leading: const Icon(Icons.phone),
+                      title: const Text('Phone: +91 702 564 61 62'),
+                      onTap: () {},
+                    ),
+                  ],
+                ),
+              ),
             )
-            // ListView(
-            //   children: const [
-            //     SizedBox(height: 20),
-            //     Text(
-            //       'Frequently Asked Questions',
-            //       style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            //     ),
-            //     SizedBox(height: 10),
-            //     FAQItem(
-            //       question: 'How do I create an account?',
-            //       answer:
-            //           'To create an account, click on the "Sign Up" button...',
-            //     ),
-            //     FAQItem(
-            //       question: 'How can I track my order?',
-            //       answer:
-            //           'Once your order is shipped, you will receive a tracking number...',
-            //     ),
-            //     FAQItem(
-            //       question: 'What payment methods do you accept?',
-            //       answer:
-            //           'We accept credit/debit cards, PayPal, and bank transfers...',
-            //     ),
-            //     SizedBox(height: 20),
-            //     Text(
-            //       'Contact Information',
-            //       style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            //     ),
-            //     SizedBox(height: 10),
-            //   ],
-            // )
           ],
         ),
       ),

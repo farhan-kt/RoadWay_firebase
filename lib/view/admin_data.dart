@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:car_sale_firebase/widget/button_widget.dart';
 import 'package:car_sale_firebase/widget/textformfield_widget.dart';
 import 'package:car_sale_firebase/widget/textstyle_widget.dart';
@@ -26,10 +28,20 @@ class AdminAddDataScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                textPoppins(
-                  name: 'RoadWay',
-                  fontsize: 25,
-                  fontweight: FontWeight.w600,
+                Row(
+                  children: [
+                    IconButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        icon: const Icon(Icons.arrow_back_ios)),
+                    SizedBox(width: size.width * .19),
+                    textPoppins(
+                      name: 'RoadWay',
+                      fontsize: 25,
+                      fontweight: FontWeight.w600,
+                    ),
+                  ],
                 ),
                 textAbel(
                   name: 'M  O  T  O  R  S',

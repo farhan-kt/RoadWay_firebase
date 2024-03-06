@@ -1,22 +1,23 @@
+import 'package:car_sale_firebase/controller/authentication_provider.dart';
 import 'package:car_sale_firebase/widget/button_widget.dart';
 import 'package:car_sale_firebase/widget/textformfield_widget.dart';
 import 'package:car_sale_firebase/widget/textstyle_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class AdminLoginScreen extends StatelessWidget {
-  AdminLoginScreen({super.key});
-
-  TextEditingController adminController = TextEditingController();
-  TextEditingController adminPassController = TextEditingController();
+  const AdminLoginScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-
+    final adminProvider =
+        Provider.of<AuthenticationProvider>(context, listen: false);
     const OutlineInputBorder inputBorderColor = OutlineInputBorder(
       borderSide: BorderSide(color: Colors.black),
     );
     return Scaffold(
+      appBar: AppBar(),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 12),
@@ -45,13 +46,13 @@ class AdminLoginScreen extends StatelessWidget {
                     ),
                     CustomTextFormField(
                         labelText: 'Admin Key',
-                        controller: adminController,
+                        controller: adminProvider.adminController,
                         enabledBorder: inputBorderColor,
                         focusedBorder: inputBorderColor,
                         focusErrorBorder: inputBorderColor),
                     CustomTextFormField(
                       labelText: 'Password',
-                      controller: adminPassController,
+                      controller: adminProvider.adminPassController,
                       obscureText: true,
                       enabledBorder: inputBorderColor,
                       focusedBorder: inputBorderColor,
@@ -60,7 +61,9 @@ class AdminLoginScreen extends StatelessWidget {
                     ButtonWidgets().rectangleButton(
                       size,
                       name: 'Submit',
-                      onPressed: () {},
+                      onPressed: () {
+                        adminProvider.adminLogin(context);
+                      },
                     )
                   ],
                 ),
