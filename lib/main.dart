@@ -2,7 +2,7 @@ import 'package:car_sale_firebase/controller/authentication_provider.dart';
 import 'package:car_sale_firebase/controller/bottombar_provider.dart';
 import 'package:car_sale_firebase/controller/car_provider.dart';
 import 'package:car_sale_firebase/firebase_options.dart';
-import 'package:car_sale_firebase/view/welcome_screen.dart';
+import 'package:car_sale_firebase/view/welcome/welcome_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

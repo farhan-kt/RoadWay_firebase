@@ -1,5 +1,5 @@
-import 'package:car_sale_firebase/view/admin_login.dart';
-import 'package:car_sale_firebase/view/login_screen.dart';
+import 'package:car_sale_firebase/view/admin/admin_login.dart';
+import 'package:car_sale_firebase/view/authentication_screens.dart/login_screen.dart';
 import 'package:car_sale_firebase/widget/textstyle_widget.dart';
 import 'package:flutter/material.dart';
 

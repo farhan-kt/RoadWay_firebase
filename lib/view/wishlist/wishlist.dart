@@ -1,5 +1,5 @@
 import 'package:car_sale_firebase/controller/car_provider.dart';
-import 'package:car_sale_firebase/view/car_details_screen.dart';
+import 'package:car_sale_firebase/view/home/car_details_screen.dart';
 import 'package:car_sale_firebase/widget/home_product_details_container.dart';
 import 'package:car_sale_firebase/widget/home_widgets.dart';
 import 'package:car_sale_firebase/widget/textstyle_widget.dart';

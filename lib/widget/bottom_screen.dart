@@ -1,7 +1,7 @@
 import 'package:car_sale_firebase/controller/bottombar_provider.dart';
-import 'package:car_sale_firebase/view/home.dart';
-import 'package:car_sale_firebase/view/settings.dart';
-import 'package:car_sale_firebase/view/wishlist.dart';
+import 'package:car_sale_firebase/view/home/home.dart';
+import 'package:car_sale_firebase/view/settings/settings.dart';
+import 'package:car_sale_firebase/view/wishlist/wishlist.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
