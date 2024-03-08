@@ -42,7 +42,7 @@ class RegisterScreen extends StatelessWidget {
               SizedBox(
                 height: size.height * .5,
                 child: Form(
-                  key: authProvider.RegisterFormkey,
+                  key: authProvider.registerFormkey,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
@@ -63,7 +63,7 @@ class RegisterScreen extends StatelessWidget {
                         size,
                         name: 'Register',
                         onPressed: () {
-                          if (authProvider.RegisterFormkey.currentState!
+                          if (authProvider.registerFormkey.currentState!
                               .validate()) {
                             try {
                               if (authProvider.passwordController.text ==

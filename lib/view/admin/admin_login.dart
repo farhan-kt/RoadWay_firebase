@@ -3,6 +3,7 @@ import 'package:car_sale_firebase/widget/button_widget.dart';
 import 'package:car_sale_firebase/widget/textformfield_widget.dart';
 import 'package:car_sale_firebase/widget/textstyle_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 
 class AdminLoginScreen extends StatelessWidget {
@@ -30,19 +31,22 @@ class AdminLoginScreen extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        textPoppins(
-                          name: 'RoadWay',
-                          fontsize: 25,
-                          fontweight: FontWeight.w600,
-                        ),
-                        textAbel(
-                            name: 'M  O  T  O  R  S',
-                            fontsize: 17,
-                            fontweight: FontWeight.w800),
-                      ],
+                    Form(
+                      key: adminProvider.adminFormkey,
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          textPoppins(
+                            name: 'RoadWay',
+                            fontsize: 25,
+                            fontweight: FontWeight.w600,
+                          ),
+                          textAbel(
+                              name: 'M  O  T  O  R  S',
+                              fontsize: 17,
+                              fontweight: FontWeight.w800),
+                        ],
+                      ),
                     ),
                     CustomTextFormField(
                         labelText: 'Admin Key',
@@ -62,7 +66,10 @@ class AdminLoginScreen extends StatelessWidget {
                       size,
                       name: 'Submit',
                       onPressed: () {
-                        adminProvider.adminLogin(context);
+                        if (adminProvider.adminFormkey.currentState!
+                            .validate()) {
+                          adminProvider.adminLogin(context);
+                        }
                       },
                     )
                   ],

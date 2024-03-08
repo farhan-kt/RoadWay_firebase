@@ -10,7 +10,8 @@ class AuthenticationProvider extends ChangeNotifier {
   TextEditingController passwordController = TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
   final loginFormkey = GlobalKey<FormState>();
-  final RegisterFormkey = GlobalKey<FormState>();
+  final registerFormkey = GlobalKey<FormState>();
+  final adminFormkey = GlobalKey<FormState>();
   final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
   final AuthenticationService authService = AuthenticationService();
 

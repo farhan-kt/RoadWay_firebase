@@ -50,10 +50,10 @@ class HomeScreen extends StatelessWidget {
           children: [
             Consumer<CarProvider>(
               builder: (context, carValue, child) {
-                if (carValue.searchedList.isEmpty &&
+                if (carValue.searchList.isEmpty &&
                     carValue.searchController.text.isNotEmpty) {
                   return Center(child: Image.asset('assets/RoadWay.png'));
-                } else if (carValue.searchedList.isEmpty) {
+                } else if (carValue.searchList.isEmpty) {
                   if (carValue.allCarList.isNotEmpty) {
                     final allCar = carValue.allCarList;
                     return GridView.builder(
@@ -84,9 +84,9 @@ class HomeScreen extends StatelessWidget {
                 } else {
                   return GridView.builder(
                     gridDelegate: gridDelegate(size.width * 0.0018),
-                    itemCount: carValue.searchedList.length,
+                    itemCount: carValue.searchList.length,
                     itemBuilder: (context, index) {
-                      final car = carValue.searchedList[index];
+                      final car = carValue.searchList[index];
 
                       return GestureDetector(
                           onTap: () {
