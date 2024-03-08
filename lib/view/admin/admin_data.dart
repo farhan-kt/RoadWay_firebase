@@ -1,20 +1,19 @@
 // ignore_for_file: must_be_immutable
 
+import 'package:car_sale_firebase/controller/car_provider.dart';
 import 'package:car_sale_firebase/widget/button_widget.dart';
 import 'package:car_sale_firebase/widget/textformfield_widget.dart';
 import 'package:car_sale_firebase/widget/textstyle_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class AdminAddDataScreen extends StatelessWidget {
   AdminAddDataScreen({super.key});
-  TextEditingController carNameController = TextEditingController();
-  TextEditingController descriptionController = TextEditingController();
-  TextEditingController priceController = TextEditingController();
-  TextEditingController showRoomPlaceController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    final carProvider = Provider.of<CarProvider>(context, listen: false);
     const OutlineInputBorder inputBorderColor = OutlineInputBorder(
       borderSide: BorderSide(color: Colors.black),
     );
@@ -91,7 +90,7 @@ class AdminAddDataScreen extends StatelessWidget {
                 ),
                 CustomTextFormField(
                   labelText: 'Car Name',
-                  controller: carNameController,
+                  controller: carProvider.carNameController,
                   enabledBorder: inputBorderColor,
                   focusedBorder: inputBorderColor,
                   focusErrorBorder: inputBorderColor,
@@ -103,21 +102,21 @@ class AdminAddDataScreen extends StatelessWidget {
                     children: [
                       CustomTextFormField(
                         labelText: 'Description',
-                        controller: descriptionController,
+                        controller: carProvider.descriptionController,
+                        enabledBorder: inputBorderColor,
+                        focusedBorder: inputBorderColor,
+                        focusErrorBorder: inputBorderColor,
+                      ),
+                      CustomTextFormField(
+                        labelText: 'Car body style',
+                        controller: carProvider.showRoomPlaceController,
                         enabledBorder: inputBorderColor,
                         focusedBorder: inputBorderColor,
                         focusErrorBorder: inputBorderColor,
                       ),
                       CustomTextFormField(
                         labelText: 'Price',
-                        controller: priceController,
-                        enabledBorder: inputBorderColor,
-                        focusedBorder: inputBorderColor,
-                        focusErrorBorder: inputBorderColor,
-                      ),
-                      CustomTextFormField(
-                        labelText: 'Car Type',
-                        controller: showRoomPlaceController,
+                        controller: carProvider.priceController,
                         enabledBorder: inputBorderColor,
                         focusedBorder: inputBorderColor,
                         focusErrorBorder: inputBorderColor,

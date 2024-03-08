@@ -20,9 +20,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
+        ChangeNotifierProvider(create: (context) => AuthenticationProvider()),
         ChangeNotifierProvider(create: (context) => BottomProvider()),
         ChangeNotifierProvider(create: (context) => CarProvider()),
-        ChangeNotifierProvider(create: (context) => AuthenticationProvider()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

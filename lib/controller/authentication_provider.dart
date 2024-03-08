@@ -30,14 +30,33 @@ class AuthenticationProvider extends ChangeNotifier {
   }
 
   Future<UserCredential> registerUser(String email, String password) async {
-    return await authService.userRegisterEmail(email, password);
+    return await authService.userEmailRegister(email, password);
   }
 
   Future<UserCredential> loginUser(String email, String password) async {
-    return await authService.userLoginEmail(email, password);
+    return await authService.userEmailLogin(email, password);
   }
 
   Future<void> logOut() async {
     await authService.logOut();
+  }
+
+  Future<void> googleSignIn() async {
+    await authService.googleSignIn();
+    notifyListeners();
+  }
+
+  Future<void> googleSignOut() async {
+    await authService.googleSignOut();
+    notifyListeners();
+  }
+
+  gitHubSignIn() async {
+    try {
+      await authService.gitHubSignIn();
+    } catch (e) {
+      throw Exception('Exception $e');
+    }
+    notifyListeners();
   }
 }

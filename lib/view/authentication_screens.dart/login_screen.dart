@@ -2,6 +2,7 @@
 
 import 'package:car_sale_firebase/controller/authentication_provider.dart';
 import 'package:car_sale_firebase/view/authentication_screens.dart/register_screen.dart';
+import 'package:car_sale_firebase/view/authentication_screens.dart/widgets/login_widgets.dart';
 import 'package:car_sale_firebase/widget/bottom_screen.dart';
 import 'package:car_sale_firebase/widget/button_widget.dart';
 import 'package:car_sale_firebase/widget/snackbar_widget.dart';
@@ -78,6 +79,7 @@ class LoginScreen extends StatelessWidget {
                           ],
                         ),
                       ),
+                      LoginWidgets().loginIcons(context)
                     ],
                   ),
                 ),
