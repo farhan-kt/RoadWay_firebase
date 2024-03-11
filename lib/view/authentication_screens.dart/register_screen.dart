@@ -1,7 +1,5 @@
 // ignore_for_file: must_be_immutable
 
-import 'dart:developer';
-
 import 'package:car_sale_firebase/widget/bottom_screen.dart';
 import 'package:car_sale_firebase/widget/snackbar_widget.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +10,7 @@ import 'package:car_sale_firebase/widget/textformfield_widget.dart';
 import 'package:car_sale_firebase/widget/textstyle_widget.dart';
 
 class RegisterScreen extends StatelessWidget {
+  bool isLoading = false;
   RegisterScreen({super.key});
 
   @override
@@ -110,8 +109,8 @@ class RegisterScreen extends StatelessWidget {
                                     context, 'passwords do not match');
                               }
                             } catch (e) {
-                              SnackBarWidget().showErrorSnackbar(
-                                  context, 'Registeration failed');
+                              SnackBarWidget().showErrorSnackbar(context,
+                                  'Already existed E-mail or invalid E-mail');
                             }
                           }
                         },
@@ -127,6 +126,7 @@ class RegisterScreen extends StatelessWidget {
                   InkWell(
                     onTap: () {
                       Navigator.pop(context);
+                      authProvider.clearRegisterControllers();
                     },
                     child: textAbel(
                         name: 'Login Now',
@@ -141,5 +141,13 @@ class RegisterScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  circularIndicator() {
+    if (isLoading = true) {
+      return CircularProgressIndicator(
+        color: Colors.black,
+      );
+    }
   }
 }

@@ -1,3 +1,4 @@
+import 'package:car_sale_firebase/view/authentication_screens.dart/authentication.dart';
 import 'package:car_sale_firebase/view/select_login.dart';
 import 'package:car_sale_firebase/widget/button_widget.dart';
 import 'package:car_sale_firebase/widget/textstyle_widget.dart';
@@ -48,7 +49,7 @@ class WelcomeScreen extends StatelessWidget {
                 Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const SelectLoginScreen()));
+                        builder: (context) => const AuthenticationNavigate()));
               }))
         ],
       ),

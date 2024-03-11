@@ -1,19 +1,17 @@
 // ignore_for_file: must_be_immutable
 
 import 'dart:io';
-
-import 'package:car_sale_firebase/controller/car_provider.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:car_sale_firebase/model/car_model.dart';
 import 'package:car_sale_firebase/widget/button_widget.dart';
-import 'package:car_sale_firebase/widget/textformfield_widget.dart';
+import 'package:car_sale_firebase/controller/car_provider.dart';
 import 'package:car_sale_firebase/widget/textstyle_widget.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:provider/provider.dart';
+import 'package:car_sale_firebase/widget/textformfield_widget.dart';
 
 class AdminAddDataScreen extends StatelessWidget {
-  AdminAddDataScreen({super.key});
+  const AdminAddDataScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -37,6 +35,7 @@ class AdminAddDataScreen extends StatelessWidget {
                     IconButton(
                         onPressed: () {
                           Navigator.pop(context);
+                          carProvider.clearCarControllers();
                         },
                         icon: const Icon(Icons.arrow_back_ios)),
                     SizedBox(width: size.width * .19),
@@ -123,6 +122,7 @@ class AdminAddDataScreen extends StatelessWidget {
                           onPressed: () {
                         addData(context);
                         carProvider.uploadImage(carProvider.downloadUrl);
+                        carProvider.clearCarControllers();
                       }, bgColor: Colors.black, fgColor: Colors.white),
                     ],
                   ),

@@ -1,9 +1,13 @@
+import 'package:car_sale_firebase/controller/authentication_provider.dart';
+import 'package:car_sale_firebase/controller/bottombar_provider.dart';
 import 'package:car_sale_firebase/view/authentication_screens.dart/login_screen.dart';
+import 'package:car_sale_firebase/view/select_login.dart';
 import 'package:car_sale_firebase/view/settings/about_app.dart';
 import 'package:car_sale_firebase/view/settings/help_center_page.dart';
 import 'package:car_sale_firebase/widget/settings_screen_widgets.dart';
 import 'package:car_sale_firebase/widget/textstyle_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class SettingScreen extends StatelessWidget {
   const SettingScreen({super.key});
@@ -74,6 +78,9 @@ class SettingScreen extends StatelessWidget {
   }
 
   sheet(BuildContext context) {
+    final authProvider =
+        Provider.of<AuthenticationProvider>(context, listen: false);
+    final bottomProvider = Provider.of<BottomProvider>(context, listen: false);
     return showDialog(
       context: context,
       builder: (context) {
@@ -103,13 +110,16 @@ class SettingScreen extends StatelessWidget {
                     backgroundColor: MaterialStatePropertyAll(
                         Color.fromARGB(255, 3, 45, 79))),
                 onPressed: () {
+                  authProvider.googleSignOut();
+                  authProvider.logOut();
                   Navigator.pushAndRemoveUntil(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => LoginScreen(),
+                      builder: (context) => SelectLoginScreen(),
                     ),
                     (route) => false,
                   );
+                  bottomProvider.currentIndex = 0;
                 },
                 child: textPoppins(name: 'LOGOUT', color: Colors.white)),
           ],

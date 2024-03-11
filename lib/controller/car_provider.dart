@@ -23,6 +23,12 @@ class CarProvider extends ChangeNotifier {
   List<CarModel> searchList = [];
   List<CarModel> allCarList = [];
 
+  void clearCarControllers() {
+    carNameController.clear();
+    descriptionController.clear();
+    priceController.clear();
+  }
+
   void addCar(CarModel data) async {
     await carService.addCar(data);
     getAllCar();

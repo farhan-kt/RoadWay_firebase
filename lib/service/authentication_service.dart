@@ -15,8 +15,8 @@ class AuthenticationService {
     try {
       UserCredential userCredential = await firebaseAuth
           .createUserWithEmailAndPassword(email: email, password: password);
-
       log('Account created');
+
       return userCredential;
     } catch (e) {
       rethrow;
