@@ -31,7 +31,7 @@ class WelcomeScreen extends StatelessWidget {
                       fontweight: FontWeight.w600,
                       color: Colors.white),
                   textAbel(
-                      name: 'Exotic vintage and premiun cars',
+                      name: 'Exotic vintage and premium cars',
                       color: Colors.white,
                       fontsize: 17,
                       fontweight: FontWeight.w600)

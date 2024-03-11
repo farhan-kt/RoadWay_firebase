@@ -38,13 +38,13 @@ class CarDetailsScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                carDetailsText(),
+                carDetailsText(value: 'sas'),
                 const SizedBox(height: 20),
-                carDetailsText(),
+                carDetailsText(value: 'dsd'),
                 const SizedBox(height: 20),
-                carDetailsText(),
+                carDetailsText(value: 'dsds'),
                 const SizedBox(height: 20),
-                carDetailsText(),
+                carDetailsText(value: 'dsds'),
               ],
             ),
           )

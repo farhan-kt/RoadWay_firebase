@@ -12,6 +12,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    Provider.of<CarProvider>(context, listen: false).getAllCar();
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -44,64 +45,73 @@ class HomeScreen extends StatelessWidget {
           ],
         ),
       ),
-      body: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
+      body: Padding(
+        padding: const EdgeInsets.all(10.0),
         child: Column(
           children: [
-            Consumer<CarProvider>(
-              builder: (context, carValue, child) {
-                if (carValue.searchList.isEmpty &&
-                    carValue.searchController.text.isNotEmpty) {
-                  return Center(child: Image.asset('assets/RoadWay.png'));
-                } else if (carValue.searchList.isEmpty) {
-                  if (carValue.allCarList.isNotEmpty) {
-                    final allCar = carValue.allCarList;
+            Expanded(
+              child: Consumer<CarProvider>(
+                builder: (context, carValue, child) {
+                  if (carValue.searchList.isEmpty &&
+                      carValue.searchController.text.isNotEmpty) {
+                    return Center(child: Image.asset('assets/RoadWay.png'));
+                  } else if (carValue.searchList.isEmpty) {
+                    if (carValue.allCarList.isNotEmpty) {
+                      final allCar = carValue.allCarList;
+                      return GridView.builder(
+                        gridDelegate: gridDelegate(size.width * 0.0018),
+                        itemCount: allCar.length,
+                        itemBuilder: (context, index) {
+                          final cars = allCar[index];
+                          return GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      const CarDetailsScreen(),
+                                ),
+                              );
+                            },
+                            child: HomeCarContainer(
+                              product: cars,
+                            ),
+                          );
+                        },
+                      );
+                    } else {
+                      return Center(
+                        child: textAbel(
+                            name: 'NO CARS ADDED',
+                            fontsize: 20,
+                            fontweight: FontWeight.w700),
+                      );
+                    }
+                  } else {
                     return GridView.builder(
                       gridDelegate: gridDelegate(size.width * 0.0018),
-                      itemCount: allCar.length,
+                      itemCount: carValue.searchList.length,
                       itemBuilder: (context, index) {
+                        final car = carValue.searchList[index];
+
                         return GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const CarDetailsScreen(),
-                              ),
-                            );
-                          },
-                          child: const HomeCarContainer(),
-                        );
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      const CarDetailsScreen(),
+                                ),
+                              );
+                            },
+                            child: HomeCarContainer(
+                              product: car,
+                            ));
                       },
                     );
-                  } else {
-                    return Center(
-                      child: textAbel(
-                          name: 'NO CAR ADDED',
-                          fontsize: 20,
-                          fontweight: FontWeight.w700),
-                    );
                   }
-                } else {
-                  return GridView.builder(
-                    gridDelegate: gridDelegate(size.width * 0.0018),
-                    itemCount: carValue.searchList.length,
-                    itemBuilder: (context, index) {
-                      final car = carValue.searchList[index];
-
-                      return GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const CarDetailsScreen(),
-                              ),
-                            );
-                          },
-                          child: const HomeCarContainer());
-                    },
-                  );
-                }
-              },
+                },
+              ),
             ),
           ],
         ),

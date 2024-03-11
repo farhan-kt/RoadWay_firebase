@@ -6,9 +6,12 @@ import 'package:flutter/material.dart';
 class AuthenticationProvider extends ChangeNotifier {
   TextEditingController adminController = TextEditingController();
   TextEditingController adminPassController = TextEditingController();
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
+  TextEditingController loginEmailController = TextEditingController();
+  TextEditingController registerEmailController = TextEditingController();
+  TextEditingController loginPasswordController = TextEditingController();
+  TextEditingController registerPasswordController = TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
+  bool obscureText = true;
   final loginFormkey = GlobalKey<FormState>();
   final registerFormkey = GlobalKey<FormState>();
   final adminFormkey = GlobalKey<FormState>();
@@ -24,9 +27,19 @@ class AuthenticationProvider extends ChangeNotifier {
     }
   }
 
-  void clearControllers() {
-    emailController.clear();
-    passwordController.clear();
+  void clearAdminController() {
+    adminController.clear();
+    adminPassController.clear();
+  }
+
+  void clearLoginControllers() {
+    loginEmailController.clear();
+    loginPasswordController.clear();
+  }
+
+  void clearRegisterControllers() {
+    registerEmailController.clear();
+    registerPasswordController.clear();
     confirmPasswordController.clear();
   }
 
@@ -58,6 +71,11 @@ class AuthenticationProvider extends ChangeNotifier {
     } catch (e) {
       throw Exception('Exception $e');
     }
+    notifyListeners();
+  }
+
+  void obscureChange() {
+    obscureText = !obscureText;
     notifyListeners();
   }
 }

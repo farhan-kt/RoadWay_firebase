@@ -62,4 +62,28 @@ class ButtonWidgets {
       ),
     );
   }
+
+  Widget selectLogin(Size size,
+      {required VoidCallback? onPressed,
+      required Widget icon,
+      required Widget label}) {
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: const BorderRadius.all(Radius.circular(10)),
+        border: Border.all(color: Colors.black, width: 2),
+      ),
+      height: size.height * .08,
+      width: size.width * double.infinity,
+      child: ElevatedButton.icon(
+        style: ButtonStyle(
+          shape: const MaterialStatePropertyAll(BeveledRectangleBorder()),
+          backgroundColor: MaterialStateProperty.all(Colors.black),
+          foregroundColor: MaterialStateProperty.all(Colors.white),
+        ),
+        onPressed: onPressed,
+        icon: icon,
+        label: label,
+      ),
+    );
+  }
 }

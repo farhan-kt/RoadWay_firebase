@@ -1,5 +1,8 @@
 // ignore_for_file: must_be_immutable
 
+import 'dart:developer';
+
+import 'package:car_sale_firebase/widget/bottom_screen.dart';
 import 'package:car_sale_firebase/widget/snackbar_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -24,20 +27,22 @@ class RegisterScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              IconButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  icon: const Icon(Icons.arrow_back_ios_new_rounded)),
-              textPoppins(
-                name: 'RoadWay Register',
-                fontsize: 25,
-                fontweight: FontWeight.w600,
+              Row(
+                children: [
+                  IconButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                        authProvider.clearRegisterControllers();
+                      },
+                      icon: const Icon(Icons.arrow_back_ios_new_rounded)),
+                  SizedBox(width: size.width * .07),
+                  textPoppins(
+                    name: 'RoadWay Register',
+                    fontsize: 25,
+                    fontweight: FontWeight.w600,
+                  ),
+                ],
               ),
-              textAbel(
-                  name: 'Ready to race your engine',
-                  fontsize: 17,
-                  fontweight: FontWeight.w800),
               SizedBox(height: size.height * .1),
               SizedBox(
                 height: size.height * .5,
@@ -48,37 +53,64 @@ class RegisterScreen extends StatelessWidget {
                     children: [
                       CustomTextFormField(
                           labelText: 'Email',
-                          controller: authProvider.emailController),
-                      CustomTextFormField(
-                        labelText: 'Password',
-                        controller: authProvider.passwordController,
-                        obscureText: true,
-                      ),
-                      CustomTextFormField(
-                        labelText: 'Confirm password',
-                        controller: authProvider.confirmPasswordController,
-                        obscureText: true,
-                      ),
+                          controller: authProvider.registerEmailController),
+                      Consumer<AuthenticationProvider>(
+                          builder: (context, value, child) {
+                        return Column(
+                          children: [
+                            CustomTextFormField(
+                              labelText: 'Password',
+                              controller:
+                                  authProvider.registerPasswordController,
+                              obscureText: value.obscureText,
+                              suffixIcon: IconButton(
+                                icon: Icon(value.obscureText
+                                    ? Icons.visibility_off_outlined
+                                    : Icons.visibility_outlined),
+                                onPressed: () {
+                                  value.obscureChange();
+                                },
+                              ),
+                            ),
+                            SizedBox(height: size.height * .035),
+                            CustomTextFormField(
+                              labelText: 'Confirm password',
+                              controller:
+                                  authProvider.confirmPasswordController,
+                              obscureText: value.obscureText,
+                            ),
+                          ],
+                        );
+                      }),
                       ButtonWidgets().rectangleButton(
                         size,
                         name: 'Register',
-                        onPressed: () {
+                        onPressed: () async {
                           if (authProvider.registerFormkey.currentState!
                               .validate()) {
                             try {
-                              if (authProvider.passwordController.text ==
+                              if (authProvider
+                                      .registerPasswordController.text ==
                                   authProvider.confirmPasswordController.text) {
-                                authProvider.registerUser(
-                                    authProvider.emailController.text,
-                                    authProvider.passwordController.text);
+                                await authProvider.registerUser(
+                                    authProvider.registerEmailController.text,
+                                    authProvider
+                                        .registerPasswordController.text);
 
-                                Navigator.pop(context);
-                                authProvider.clearControllers();
+                                Navigator.pushReplacement(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => BottomScreen()));
+
+                                authProvider.clearRegisterControllers();
                                 SnackBarWidget().showSuccessSnackbar(
                                     context, 'Registeration success');
-                              } else {}
+                              } else {
+                                SnackBarWidget().showErrorSnackbar(
+                                    context, 'passwords do not match');
+                              }
                             } catch (e) {
-                              SnackBarWidget().showSuccessSnackbar(
+                              SnackBarWidget().showErrorSnackbar(
                                   context, 'Registeration failed');
                             }
                           }

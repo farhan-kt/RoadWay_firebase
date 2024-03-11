@@ -1,7 +1,11 @@
+import 'package:car_sale_firebase/controller/car_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class HomeCarContainer extends StatelessWidget {
-  const HomeCarContainer({super.key});
+  final product;
+
+  HomeCarContainer({Key? key, required this.product}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,18 +23,18 @@ class HomeCarContainer extends StatelessWidget {
             child: Container(
               height: size.width * 0.3,
               width: size.width * 0.3,
-              // decoration: BoxDecoration(
-              //   image: DecorationImage(
-              //     fit: BoxFit.contain,
-              //     image: NetworkImage(
-              //       // product.image.toString(),
-              //     )
-              //   ),
-              // ),
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  fit: BoxFit.contain,
+                  image: AssetImage(
+                    'assets/RoadWay.png',
+                  ),
+                ),
+              ),
             ),
           ),
           Text(
-            'Unknown',
+            'BMW',
             style: const TextStyle(
               color: Colors.black,
               fontWeight: FontWeight.bold,
@@ -38,9 +42,8 @@ class HomeCarContainer extends StatelessWidget {
             ),
           ),
           Text(
-            'Unknown',
+            product.category ?? 'Unknown',
             style: TextStyle(
-              // color: product.category == 'men' ? Colors.blue : Colors.pink,
               fontSize: 12,
             ),
           ),
@@ -48,19 +51,28 @@ class HomeCarContainer extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                // '₹ ${product.price.toString()}',
-                'ff',
+                '₹ ${product.price.toString()}',
                 style: const TextStyle(
                   color: Colors.black,
                   fontWeight: FontWeight.bold,
                   fontSize: 14,
                 ),
               ),
-              IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.favorite_outline,
-                  color: Colors.black,
+              Consumer<CarProvider>(
+                builder: (context, value, child) => IconButton(
+                  onPressed: () {
+                    final wish = value.wishlistCheck(product);
+                    value.wishlistCliscked(product.id, wish);
+                  },
+                  icon: value.wishlistCheck(product)
+                      ? Icon(
+                          Icons.favorite_border_outlined,
+                          color: Colors.red,
+                        )
+                      : Icon(
+                          Icons.favorite,
+                          color: Colors.red,
+                        ),
                 ),
               )
             ],

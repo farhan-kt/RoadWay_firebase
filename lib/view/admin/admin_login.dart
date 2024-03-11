@@ -1,10 +1,9 @@
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:car_sale_firebase/controller/authentication_provider.dart';
 import 'package:car_sale_firebase/widget/button_widget.dart';
 import 'package:car_sale_firebase/widget/textformfield_widget.dart';
 import 'package:car_sale_firebase/widget/textstyle_widget.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:provider/provider.dart';
 
 class AdminLoginScreen extends StatelessWidget {
   const AdminLoginScreen({super.key});
@@ -18,7 +17,15 @@ class AdminLoginScreen extends StatelessWidget {
       borderSide: BorderSide(color: Colors.black),
     );
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+              adminProvider.clearAdminController();
+            },
+            icon: const Icon(Icons.arrow_back_ios)),
+      ),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 12),
@@ -54,13 +61,23 @@ class AdminLoginScreen extends StatelessWidget {
                         enabledBorder: inputBorderColor,
                         focusedBorder: inputBorderColor,
                         focusErrorBorder: inputBorderColor),
-                    CustomTextFormField(
-                      labelText: 'Password',
-                      controller: adminProvider.adminPassController,
-                      obscureText: true,
-                      enabledBorder: inputBorderColor,
-                      focusedBorder: inputBorderColor,
-                      focusErrorBorder: inputBorderColor,
+                    Consumer<AuthenticationProvider>(
+                      builder: (context, value, child) => CustomTextFormField(
+                        labelText: 'Password',
+                        controller: value.adminPassController,
+                        obscureText: value.obscureText,
+                        enabledBorder: inputBorderColor,
+                        focusedBorder: inputBorderColor,
+                        focusErrorBorder: inputBorderColor,
+                        suffixIcon: IconButton(
+                          icon: Icon(value.obscureText
+                              ? Icons.visibility_off_outlined
+                              : Icons.visibility_outlined),
+                          onPressed: () {
+                            value.obscureChange();
+                          },
+                        ),
+                      ),
                     ),
                     ButtonWidgets().rectangleButton(
                       size,

@@ -25,31 +25,36 @@ class WishListScreen extends StatelessWidget {
                 fontsize: 25,
                 fontweight: FontWeight.w600,
               ),
-              Consumer<CarProvider>(
-                builder: (context, carValue, child) {
-                  if (carValue.allCarList.isEmpty) {
-                    return Center(child: Image.asset('assets/RoadWay.png'));
-                  } else {
-                    final allCar = carValue.allCarList;
-                    return GridView.builder(
-                      gridDelegate: gridDelegate(size.width * 0.0018),
-                      itemCount: allCar.length,
-                      itemBuilder: (context, index) {
-                        return GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const CarDetailsScreen(),
-                              ),
-                            );
-                          },
-                          child: const HomeCarContainer(),
-                        );
-                      },
-                    );
-                  }
-                },
+              Expanded(
+                child: Consumer<CarProvider>(
+                  builder: (context, carValue, child) {
+                    if (carValue.allCarList.isEmpty) {
+                      return Center(child: Image.asset('assets/RoadWay.png'));
+                    } else {
+                      final allCar = carValue.allCarList;
+                      return GridView.builder(
+                        gridDelegate: gridDelegate(size.width * 0.0018),
+                        itemCount: allCar.length,
+                        itemBuilder: (context, index) {
+                          return GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      const CarDetailsScreen(),
+                                ),
+                              );
+                            },
+                            child: HomeCarContainer(
+                              product: allCar,
+                            ),
+                          );
+                        },
+                      );
+                    }
+                  },
+                ),
               ),
             ],
           ),
