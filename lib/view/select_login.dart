@@ -1,8 +1,8 @@
-import 'package:car_sale_firebase/view/admin/admin_login.dart';
-import 'package:car_sale_firebase/view/authentication_screens.dart/login_screen.dart';
-import 'package:car_sale_firebase/widget/button_widget.dart';
-import 'package:car_sale_firebase/widget/textstyle_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:car_sale_firebase/widget/button_widget.dart';
+import 'package:car_sale_firebase/view/admin/admin_login.dart';
+import 'package:car_sale_firebase/widget/textstyle_widget.dart';
+import 'package:car_sale_firebase/view/authentication_screens.dart/login_screen.dart';
 
 class SelectLoginScreen extends StatelessWidget {
   const SelectLoginScreen({super.key});
@@ -32,7 +32,7 @@ class SelectLoginScreen extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => LoginScreen(),
+                        builder: (context) => const LoginScreen(),
                       ),
                     );
                   },
@@ -52,10 +52,10 @@ class SelectLoginScreen extends StatelessWidget {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => AdminLoginScreen(),
+                            builder: (context) => const AdminLoginScreen(),
                           ));
                     },
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.person_outline,
                       size: 30,
                       color: Colors.white,

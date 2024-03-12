@@ -19,7 +19,7 @@ Widget buildSettingItem(BuildContext context,
             const SizedBox(width: 10),
             Text(
               title,
-              style: TextStyle(color: Colors.white),
+              style: const TextStyle(color: Colors.white),
             ),
           ],
         ),
@@ -48,14 +48,16 @@ Widget settingsTextAbel({name}) {
 Widget settingsTextPoppins({name}) {
   return Text(name,
       style: GoogleFonts.poppins(
-          fontWeight: FontWeight.w700, fontSize: 20, color: Color(0xFF00246B)));
+          fontWeight: FontWeight.w700,
+          fontSize: 20,
+          color: const Color(0xFF00246B)));
 }
 
 class FAQItem extends StatelessWidget {
   final String question;
   final String answer;
 
-  const FAQItem({required this.question, required this.answer});
+  const FAQItem({super.key, required this.question, required this.answer});
 
   @override
   Widget build(BuildContext context) {

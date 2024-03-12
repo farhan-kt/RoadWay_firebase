@@ -1,13 +1,12 @@
-import 'package:car_sale_firebase/controller/authentication_provider.dart';
-import 'package:car_sale_firebase/controller/bottombar_provider.dart';
-import 'package:car_sale_firebase/view/authentication_screens.dart/login_screen.dart';
-import 'package:car_sale_firebase/view/select_login.dart';
-import 'package:car_sale_firebase/view/settings/about_app.dart';
-import 'package:car_sale_firebase/view/settings/help_center_page.dart';
-import 'package:car_sale_firebase/widget/settings_screen_widgets.dart';
-import 'package:car_sale_firebase/widget/textstyle_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:car_sale_firebase/view/select_login.dart';
+import 'package:car_sale_firebase/widget/textstyle_widget.dart';
+import 'package:car_sale_firebase/view/settings/about_app.dart';
+import 'package:car_sale_firebase/controller/bottombar_provider.dart';
+import 'package:car_sale_firebase/view/settings/help_center_page.dart';
+import 'package:car_sale_firebase/widget/settings_screen_widgets.dart';
+import 'package:car_sale_firebase/controller/authentication_provider.dart';
 
 class SettingScreen extends StatelessWidget {
   const SettingScreen({super.key});
@@ -115,7 +114,7 @@ class SettingScreen extends StatelessWidget {
                   Navigator.pushAndRemoveUntil(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => SelectLoginScreen(),
+                      builder: (context) => const SelectLoginScreen(),
                     ),
                     (route) => false,
                   );

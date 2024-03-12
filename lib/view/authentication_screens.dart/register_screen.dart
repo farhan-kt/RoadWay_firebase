@@ -1,13 +1,13 @@
-// ignore_for_file: must_be_immutable
+// ignore_for_file: must_be_immutable, use_build_context_synchronously
 
-import 'package:car_sale_firebase/widget/bottom_screen.dart';
-import 'package:car_sale_firebase/widget/snackbar_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:car_sale_firebase/controller/authentication_provider.dart';
 import 'package:car_sale_firebase/widget/button_widget.dart';
-import 'package:car_sale_firebase/widget/textformfield_widget.dart';
+import 'package:car_sale_firebase/widget/bottom_screen.dart';
+import 'package:car_sale_firebase/widget/snackbar_widget.dart';
 import 'package:car_sale_firebase/widget/textstyle_widget.dart';
+import 'package:car_sale_firebase/widget/textformfield_widget.dart';
+import 'package:car_sale_firebase/controller/authentication_provider.dart';
 
 class RegisterScreen extends StatelessWidget {
   bool isLoading = false;
@@ -145,7 +145,7 @@ class RegisterScreen extends StatelessWidget {
 
   circularIndicator() {
     if (isLoading = true) {
-      return CircularProgressIndicator(
+      return const CircularProgressIndicator(
         color: Colors.black,
       );
     }

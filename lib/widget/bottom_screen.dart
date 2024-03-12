@@ -5,10 +5,15 @@ import 'package:car_sale_firebase/view/wishlist/wishlist.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+// ignore: must_be_immutable
 class BottomScreen extends StatelessWidget {
   BottomScreen({super.key});
 
-  List screens = [const HomeScreen(), const WishListScreen(), SettingScreen()];
+  List screens = [
+    const HomeScreen(),
+    const WishListScreen(),
+    const SettingScreen()
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -24,12 +29,12 @@ class BottomScreen extends StatelessWidget {
               unselectedFontSize: 0,
               type: BottomNavigationBarType.fixed,
               onTap: value.onTap,
-              backgroundColor: Color(0xFF00246B),
+              backgroundColor: const Color(0xFF00246B),
               currentIndex: value.currentIndex,
-              selectedItemColor: Color(0xFF30D5C8),
-              unselectedItemColor: Color(0xFFCADCFC),
+              selectedItemColor: const Color(0xFF30D5C8),
+              unselectedItemColor: const Color(0xFFCADCFC),
               showUnselectedLabels: true,
-              unselectedLabelStyle: TextStyle(color: Colors.black54),
+              unselectedLabelStyle: const TextStyle(color: Colors.black54),
               elevation: 0,
               items: const [
                 BottomNavigationBarItem(

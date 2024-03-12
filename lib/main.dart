@@ -1,11 +1,11 @@
-import 'package:car_sale_firebase/controller/authentication_provider.dart';
-import 'package:car_sale_firebase/controller/bottombar_provider.dart';
-import 'package:car_sale_firebase/controller/car_provider.dart';
-import 'package:car_sale_firebase/firebase_options.dart';
-import 'package:car_sale_firebase/view/welcome/welcome_screen.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:car_sale_firebase/firebase_options.dart';
+import 'package:car_sale_firebase/controller/car_provider.dart';
+import 'package:car_sale_firebase/view/welcome/welcome_screen.dart';
+import 'package:car_sale_firebase/controller/bottombar_provider.dart';
+import 'package:car_sale_firebase/controller/authentication_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => BottomProvider()),
         ChangeNotifierProvider(create: (context) => CarProvider()),
       ],
-      child: MaterialApp(
+      child: const MaterialApp(
         debugShowCheckedModeBanner: false,
         home: WelcomeScreen(),
         // home: BottomScreen(),

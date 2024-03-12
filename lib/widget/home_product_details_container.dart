@@ -1,11 +1,12 @@
-import 'package:car_sale_firebase/controller/car_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:car_sale_firebase/controller/car_provider.dart';
 
 class HomeCarContainer extends StatelessWidget {
+  // ignore: prefer_typing_uninitialized_variables
   final product;
 
-  HomeCarContainer({Key? key, required this.product}) : super(key: key);
+  const HomeCarContainer({super.key, required this.product});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +24,7 @@ class HomeCarContainer extends StatelessWidget {
             child: Container(
               height: size.width * 0.3,
               width: size.width * 0.3,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 image: DecorationImage(
                   fit: BoxFit.contain,
                   image: AssetImage(
@@ -33,9 +34,9 @@ class HomeCarContainer extends StatelessWidget {
               ),
             ),
           ),
-          Text(
+          const Text(
             'BMW',
-            style: const TextStyle(
+            style: TextStyle(
               color: Colors.black,
               fontWeight: FontWeight.bold,
               fontSize: 16,
@@ -43,7 +44,7 @@ class HomeCarContainer extends StatelessWidget {
           ),
           Text(
             product.category ?? 'Unknown',
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 12,
             ),
           ),
@@ -65,11 +66,11 @@ class HomeCarContainer extends StatelessWidget {
                     value.wishlistCliscked(product.id, wish);
                   },
                   icon: value.wishlistCheck(product)
-                      ? Icon(
+                      ? const Icon(
                           Icons.favorite_border_outlined,
                           color: Colors.red,
                         )
-                      : Icon(
+                      : const Icon(
                           Icons.favorite,
                           color: Colors.red,
                         ),

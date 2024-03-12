@@ -8,7 +8,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:image_picker/image_picker.dart';
 
 class CarService {
-  String Car = 'car';
+  String cars = 'car';
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   late CollectionReference<CarModel> car;
   Reference storage = FirebaseStorage.instance.ref();
@@ -16,7 +16,7 @@ class CarService {
   final ImagePicker imagePicker = ImagePicker();
 
   CarService() {
-    car = firestore.collection(Car).withConverter<CarModel>(
+    car = firestore.collection(cars).withConverter<CarModel>(
         fromFirestore: (snapshot, options) {
       return CarModel.fromJson(snapshot.id, snapshot.data()!);
     }, toFirestore: (value, options) {

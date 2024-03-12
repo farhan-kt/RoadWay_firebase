@@ -1,14 +1,18 @@
 import 'dart:developer';
-import 'package:car_sale_firebase/model/user_model.dart';
+import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:car_sale_firebase/model/user_model.dart';
+import 'package:car_sale_firebase/widget/bottom_screen.dart';
+import 'package:car_sale_firebase/widget/snackbar_widget.dart';
 
 class AuthenticationService {
+  String collection = 'user';
+  String? verificationid;
   FirebaseAuth firebaseAuth = FirebaseAuth.instance;
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   GithubAuthProvider githubAuthProvider = GithubAuthProvider();
-  String collection = 'user';
 
   Future<UserCredential> userEmailRegister(
       String email, String password) async {
@@ -85,9 +89,46 @@ class AuthenticationService {
     }
   }
 
-//   Future <void> otpLoginIn(String)async{
-// try{
-//   await firebaseAuth.verifyPhoneNumber(phoneNumber: phone verificationCompleted: verificationCompleted, verificationFailed: verificationFailed, codeSent: codeSent, codeAutoRetrievalTimeout: codeAutoRetrievalTimeout)
-// }
-//   }
+  Future<void> getOtp(String phoneNumber) async {
+    try {
+      await firebaseAuth.verifyPhoneNumber(
+          phoneNumber: phoneNumber,
+          verificationCompleted: (PhoneAuthCredential) async {
+            await firebaseAuth.signInWithCredential(PhoneAuthCredential);
+            User? user = FirebaseAuth.instance.currentUser;
+            if (user != null) {
+              await user.updatePhoneNumber(PhoneAuthCredential);
+            }
+          },
+          verificationFailed: (error) {
+            log('verification failed due to :$error');
+          },
+          codeSent: (verificationId, forceResendingToken) {
+            verificationid = verificationId;
+          },
+          codeAutoRetrievalTimeout: (verificationId) {
+            verificationid = verificationId;
+          },
+          timeout: const Duration(seconds: 60));
+    } catch (e) {
+      log('sign in error due to :$e');
+    }
+  }
+
+  Future<PhoneAuthCredential?> verifyOtp(String otp, context) async {
+    try {
+      PhoneAuthCredential credential = PhoneAuthProvider.credential(
+          verificationId: verificationid!, smsCode: otp);
+      await firebaseAuth.signInWithCredential(credential);
+      Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(builder: (context) => BottomScreen()),
+          (route) => false);
+      SnackBarWidget().showSuccessSnackbar(context, 'otp verified');
+    } catch (error) {
+      log('error in otp verification :$error');
+      return null;
+    }
+    return null;
+  }
 }

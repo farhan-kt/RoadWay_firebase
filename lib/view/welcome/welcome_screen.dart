@@ -1,8 +1,7 @@
-import 'package:car_sale_firebase/view/authentication_screens.dart/authentication.dart';
-import 'package:car_sale_firebase/view/select_login.dart';
+import 'package:flutter/material.dart';
 import 'package:car_sale_firebase/widget/button_widget.dart';
 import 'package:car_sale_firebase/widget/textstyle_widget.dart';
-import 'package:flutter/material.dart';
+import 'package:car_sale_firebase/view/authentication_screens.dart/authentication.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
