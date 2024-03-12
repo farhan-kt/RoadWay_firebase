@@ -47,7 +47,9 @@ class PhoneScreen extends StatelessWidget {
               children: [
                 Form(
                     key: authProvider.otpFormKey,
-                    child: LoginWidgets().phoneTextFormField(context)),
+                    child: LoginWidgets().phoneTextFormField(
+                      context,
+                    )),
                 ButtonWidgets().rectangleButton(size, name: 'GENERATE OTP',
                     onPressed: () {
                   if (authProvider.otpFormKey.currentState!.validate()) {

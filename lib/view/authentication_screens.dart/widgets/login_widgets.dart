@@ -2,7 +2,6 @@ import 'package:car_sale_firebase/controller/authentication_provider.dart';
 import 'package:car_sale_firebase/view/authentication_screens.dart/phone.dart';
 import 'package:car_sale_firebase/widget/bottom_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 class LoginWidgets {
@@ -76,14 +75,51 @@ class LoginWidgets {
       },
       maxLength: 13,
       controller: authProvider.phoneController,
-      onChanged: (value) {
-        authProvider.getOtp(authProvider.phoneController.text);
-      },
+      onChanged: (value) {},
       keyboardType: TextInputType.number,
-      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
       decoration: const InputDecoration(
         suffixIcon: Icon(Icons.phone_android_outlined),
-        labelText: 'Phone Number',
+        labelText: 'phone number',
+        labelStyle: TextStyle(color: Colors.black),
+        fillColor: Colors.white,
+        filled: true,
+        border: InputBorder.none,
+        enabledBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: Color(0xFF00246B)),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: Color(0xFF00246B)),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.red),
+        ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: Color(0xFF00246B)),
+        ),
+      ),
+    );
+  }
+
+  Widget otpTextFormField(context) {
+    final authProvider =
+        Provider.of<AuthenticationProvider>(context, listen: false);
+    return TextFormField(
+      validator: (value) {
+        if (value == null || value.isEmpty) {
+          return 'Value is empty';
+        } else {
+          return null;
+        }
+      },
+      maxLength: 13,
+      controller: authProvider.otpController,
+      onChanged: (value) {
+        authProvider.verifyOtp(authProvider.otpController.text, context);
+      },
+      keyboardType: TextInputType.number,
+      decoration: const InputDecoration(
+        suffixIcon: Icon(Icons.phone_android_outlined),
+        labelText: 'Verify otp',
         labelStyle: TextStyle(color: Colors.black),
         fillColor: Colors.white,
         filled: true,

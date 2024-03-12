@@ -12,6 +12,7 @@ class AuthenticationProvider extends ChangeNotifier {
   TextEditingController registerPasswordController = TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
+  TextEditingController otpController = TextEditingController();
   bool obscureText = true;
   bool isLoading = false;
   final loginFormkey = GlobalKey<FormState>();
