@@ -18,7 +18,7 @@ class CarProvider extends ChangeNotifier {
   TextEditingController carNameController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
   TextEditingController priceController = TextEditingController();
-  TextEditingController categoryController = TextEditingController();
+  TextEditingController kmController = TextEditingController();
   TextEditingController searchController = TextEditingController();
   List<CarModel> searchList = [];
   List<CarModel> allCarList = [];
@@ -39,13 +39,13 @@ class CarProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void search(String value) {
-    searchList = allCarList
-        .where((element) =>
-            element.carName!.toLowerCase().contains(value.toLowerCase()))
-        .toList();
-    notifyListeners();
-  }
+  // void search(String value) {
+  //   searchList = allCarList
+  //       .where((element) =>
+  //           element.carName!.toLowerCase().contains(value.toLowerCase()))
+  //       .toList();
+  //   notifyListeners();
+  // }
 
   void uploadImage(image) async {
     try {
@@ -72,17 +72,18 @@ class CarProvider extends ChangeNotifier {
       notifyListeners();
     }
   }
-  // void search(String value) {
-  //   if (value.isEmpty) {
-  //     searchedList = [];
-  //   } else {
-  //     searchedList = allCarList
-  //         .where((CarModel car) =>
-  //             car.title!.toLowerCase().contains(value.toLowerCase()))
-  //         .toList();
-  //   }
-  //   notifyListeners();
-  // }
+
+  void search(String value) {
+    if (value.isEmpty) {
+      searchList = [];
+    } else {
+      searchList = allCarList
+          .where((CarModel car) =>
+              car.carName!.toLowerCase().contains(value.toLowerCase()))
+          .toList();
+    }
+    notifyListeners();
+  }
 
   Future<void> wishlistCliscked(String id, bool status) async {
     await carService.wishListClicked(id, status);

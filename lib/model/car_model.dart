@@ -1,7 +1,7 @@
 class CarModel {
   String? id;
   String? carName;
-  String? category;
+  String? km;
   String? description;
   int? price;
   String? image;
@@ -11,7 +11,7 @@ class CarModel {
       {this.id,
       this.image,
       required this.carName,
-      required this.category,
+      required this.km,
       required this.description,
       required this.price,
       required this.wishList});
@@ -21,7 +21,7 @@ class CarModel {
         id: id,
         image: json['image'],
         carName: json['name'],
-        category: json['category'],
+        km: json['km'],
         description: json['description'],
         price: json['price'],
         wishList: List<String>.from(json['wishlist']));
@@ -31,7 +31,7 @@ class CarModel {
     return {
       'image': image,
       'name': carName,
-      'category': category,
+      'km': km,
       'description': description,
       'price': price,
       'wishlist': wishList

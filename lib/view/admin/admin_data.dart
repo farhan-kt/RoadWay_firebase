@@ -74,7 +74,7 @@ class AdminAddDataScreen extends StatelessWidget {
                                 image: value.pickedImage != null
                                     ? DecorationImage(
                                         image: FileImage(value.pickedImage!),
-                                        fit: BoxFit.cover,
+                                        fit: BoxFit.contain,
                                       )
                                     : null,
                               ),
@@ -98,15 +98,15 @@ class AdminAddDataScreen extends StatelessWidget {
                         focusErrorBorder: inputBorderColor,
                       ),
                       CustomTextFormField(
-                        labelText: 'Description',
-                        controller: carProvider.descriptionController,
+                        labelText: 'Kms',
+                        controller: carProvider.kmController,
                         enabledBorder: inputBorderColor,
                         focusedBorder: inputBorderColor,
                         focusErrorBorder: inputBorderColor,
                       ),
                       CustomTextFormField(
-                        labelText: 'Car body style',
-                        controller: carProvider.categoryController,
+                        labelText: 'Description',
+                        controller: carProvider.descriptionController,
                         enabledBorder: inputBorderColor,
                         focusedBorder: inputBorderColor,
                         focusErrorBorder: inputBorderColor,
@@ -177,7 +177,7 @@ class AdminAddDataScreen extends StatelessWidget {
       carName: carProvider.carNameController.text,
       description: carProvider.descriptionController.text,
       price: int.parse(carProvider.priceController.text),
-      category: carProvider.categoryController.text,
+      km: carProvider.kmController.text,
       image: carProvider.downloadUrl,
       wishList: [],
     );

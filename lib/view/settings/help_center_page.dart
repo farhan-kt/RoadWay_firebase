@@ -1,4 +1,4 @@
-import 'package:car_sale_firebase/widget/settings_screen_widgets.dart';
+import 'package:car_sale_firebase/view/settings/widgets/settings_screen_widgets.dart';
 import 'package:car_sale_firebase/widget/textstyle_widget.dart';
 import 'package:flutter/material.dart';
 

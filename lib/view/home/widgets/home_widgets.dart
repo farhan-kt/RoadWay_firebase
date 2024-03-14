@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-Widget searchTextFormField({onChanged, controller}) {
+Widget searchTextFormField({controller, onChanged}) {
   return TextFormField(
     onChanged: onChanged,
     controller: controller,
+    style: const TextStyle(color: Colors.white),
     decoration: InputDecoration(
       hintText: 'Search...',
       hintStyle: const TextStyle(color: Colors.white),
@@ -32,7 +33,7 @@ Widget carDetailsText({String? value, double? fontsize, fontWeight, color}) {
     children: [
       Text(
         value!,
-        style: GoogleFonts.abel(
+        style: GoogleFonts.poppins(
             fontSize: fontsize,
             fontWeight: fontWeight,
             color: color ?? Colors.black,

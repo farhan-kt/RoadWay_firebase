@@ -1,13 +1,11 @@
 import 'dart:developer';
-
-import 'package:car_sale_firebase/controller/authentication_provider.dart';
-import 'package:car_sale_firebase/view/authentication_screens.dart/widgets/login_widgets.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:car_sale_firebase/widget/button_widget.dart';
 import 'package:car_sale_firebase/widget/snackbar_widget.dart';
 import 'package:car_sale_firebase/widget/textstyle_widget.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:car_sale_firebase/controller/authentication_provider.dart';
+import 'package:car_sale_firebase/view/authentication_screens.dart/widgets/login_widgets.dart';
 
 class OtpScreen extends StatelessWidget {
   const OtpScreen({super.key});
@@ -35,7 +33,7 @@ class OtpScreen extends StatelessWidget {
                       fit: BoxFit.cover)),
             ),
             Container(
-              padding: EdgeInsets.symmetric(horizontal: 17),
+              padding: const EdgeInsets.symmetric(horizontal: 17),
               height: size.height * .4,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -43,7 +41,7 @@ class OtpScreen extends StatelessWidget {
                   LoginWidgets().otpTextFormField(
                     context,
                   ),
-                  ButtonWidgets().rectangleButton(size, name: 'verify otp',
+                  ButtonWidgets().rectangleButton(size, name: 'V E R I F Y',
                       onPressed: () {
                     if (authProvider.otpFormKey.currentState!.validate()) {
                       try {

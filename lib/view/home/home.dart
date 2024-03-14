@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:car_sale_firebase/controller/car_provider.dart';
 import 'package:car_sale_firebase/view/home/car_details_screen.dart';
-import 'package:car_sale_firebase/widget/home_product_details_container.dart';
-import 'package:car_sale_firebase/widget/home_widgets.dart';
+import 'package:car_sale_firebase/view/home/widgets/home_product_details_container.dart';
+import 'package:car_sale_firebase/view/home/widgets/home_widgets.dart';
 import 'package:car_sale_firebase/widget/textstyle_widget.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -11,6 +12,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final carProvider = Provider.of<CarProvider>(context, listen: false);
     Size size = MediaQuery.of(context).size;
     Provider.of<CarProvider>(context, listen: false).getAllCar();
     return Scaffold(
@@ -41,7 +43,10 @@ class HomeScreen extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 10),
-            searchTextFormField()
+            searchTextFormField(
+                onChanged: (value) =>
+                    carProvider.search(carProvider.searchController.text),
+                controller: carProvider.searchController),
           ],
         ),
       ),
@@ -54,7 +59,18 @@ class HomeScreen extends StatelessWidget {
                 builder: (context, carValue, child) {
                   if (carValue.searchList.isEmpty &&
                       carValue.searchController.text.isNotEmpty) {
-                    return Center(child: Image.asset('assets/RoadWay.png'));
+                    return Center(
+                        child: Center(
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.vertical,
+                        child: Column(
+                          children: [
+                            Lottie.asset('assets/no available cars.json'),
+                            textPoppins(name: 'SEARCHED CAR IS NOT AVAILABLE')
+                          ],
+                        ),
+                      ),
+                    ));
                   } else if (carValue.searchList.isEmpty) {
                     if (carValue.allCarList.isNotEmpty) {
                       final allCar = carValue.allCarList;
@@ -68,8 +84,13 @@ class HomeScreen extends StatelessWidget {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) =>
-                                      const CarDetailsScreen(),
+                                  builder: (context) => CarDetailsScreen(
+                                    carName: cars.carName,
+                                    description: cars.description,
+                                    catergory: cars.km,
+                                    price: cars.price,
+                                    image: NetworkImage(cars.image.toString()),
+                                  ),
                                 ),
                               );
                             },

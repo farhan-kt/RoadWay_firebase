@@ -5,7 +5,7 @@ import 'package:car_sale_firebase/widget/textstyle_widget.dart';
 import 'package:car_sale_firebase/view/settings/about_app.dart';
 import 'package:car_sale_firebase/controller/bottombar_provider.dart';
 import 'package:car_sale_firebase/view/settings/help_center_page.dart';
-import 'package:car_sale_firebase/widget/settings_screen_widgets.dart';
+import 'package:car_sale_firebase/view/settings/widgets/settings_screen_widgets.dart';
 import 'package:car_sale_firebase/controller/authentication_provider.dart';
 
 class SettingScreen extends StatelessWidget {

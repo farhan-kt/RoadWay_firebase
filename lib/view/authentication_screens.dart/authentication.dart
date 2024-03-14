@@ -1,7 +1,7 @@
+import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:car_sale_firebase/view/select_login.dart';
 import 'package:car_sale_firebase/widget/bottom_screen.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
 
 class AuthenticationNavigate extends StatelessWidget {
   const AuthenticationNavigate({super.key});

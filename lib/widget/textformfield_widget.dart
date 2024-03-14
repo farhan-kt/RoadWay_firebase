@@ -9,6 +9,7 @@ class CustomTextFormField extends StatelessWidget {
   final OutlineInputBorder? focusedBorder;
   final OutlineInputBorder? focusErrorBorder;
   final Widget? suffixIcon;
+
   const CustomTextFormField({
     super.key,
     required this.controller,

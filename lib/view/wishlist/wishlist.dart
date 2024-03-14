@@ -1,7 +1,7 @@
 import 'package:car_sale_firebase/controller/car_provider.dart';
 import 'package:car_sale_firebase/view/home/car_details_screen.dart';
-import 'package:car_sale_firebase/widget/home_product_details_container.dart';
-import 'package:car_sale_firebase/widget/home_widgets.dart';
+import 'package:car_sale_firebase/view/home/widgets/home_product_details_container.dart';
+import 'package:car_sale_firebase/view/home/widgets/home_widgets.dart';
 import 'package:car_sale_firebase/widget/textstyle_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -36,6 +36,7 @@ class WishListScreen extends StatelessWidget {
                         gridDelegate: gridDelegate(size.width * 0.0018),
                         itemCount: allCar.length,
                         itemBuilder: (context, index) {
+                          final cars = allCar[index];
                           return GestureDetector(
                             onTap: () {
                               Navigator.push(
@@ -47,7 +48,7 @@ class WishListScreen extends StatelessWidget {
                               );
                             },
                             child: HomeCarContainer(
-                              product: allCar,
+                              product: cars,
                             ),
                           );
                         },

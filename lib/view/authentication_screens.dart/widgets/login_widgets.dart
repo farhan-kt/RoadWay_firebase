@@ -1,8 +1,9 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
+import 'package:car_sale_firebase/widget/bottom_screen.dart';
 import 'package:car_sale_firebase/controller/authentication_provider.dart';
 import 'package:car_sale_firebase/view/authentication_screens.dart/phone.dart';
-import 'package:car_sale_firebase/widget/bottom_screen.dart';
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class LoginWidgets {
   Widget loginIcons(context) {
@@ -35,7 +36,11 @@ class LoginWidgets {
           width: size.width * .073,
           child: InkWell(
             onTap: () async {
-              authProvider.gitHubSignIn();
+              await authProvider.gitHubSignIn();
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (context) => BottomScreen()),
+                  (route) => false);
             },
             child: const Image(
                 fit: BoxFit.cover,
@@ -68,7 +73,7 @@ class LoginWidgets {
     return TextFormField(
       validator: (value) {
         if (value == null || value.isEmpty) {
-          return 'Value is empty';
+          return 'enter a phone number';
         } else {
           return null;
         }
@@ -78,6 +83,7 @@ class LoginWidgets {
       onChanged: (value) {},
       keyboardType: TextInputType.number,
       decoration: const InputDecoration(
+        prefixText: '+91',
         suffixIcon: Icon(Icons.phone_android_outlined),
         labelText: 'phone number',
         labelStyle: TextStyle(color: Colors.black),
@@ -106,20 +112,20 @@ class LoginWidgets {
     return TextFormField(
       validator: (value) {
         if (value == null || value.isEmpty) {
-          return 'Value is empty';
+          return 'otp is empty';
         } else {
           return null;
         }
       },
-      maxLength: 13,
+      maxLength: 6,
       controller: authProvider.otpController,
-      onChanged: (value) {
-        authProvider.verifyOtp(authProvider.otpController.text, context);
-      },
+      inputFormatters: [
+        FilteringTextInputFormatter.digitsOnly,
+      ],
       keyboardType: TextInputType.number,
       decoration: const InputDecoration(
         suffixIcon: Icon(Icons.phone_android_outlined),
-        labelText: 'Verify otp',
+        labelText: 'Enter otp',
         labelStyle: TextStyle(color: Colors.black),
         fillColor: Colors.white,
         filled: true,
