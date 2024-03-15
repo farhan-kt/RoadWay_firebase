@@ -25,8 +25,10 @@ class CarProvider extends ChangeNotifier {
 
   void clearCarControllers() {
     carNameController.clear();
+    kmController.clear();
     descriptionController.clear();
     priceController.clear();
+    pickedImage = null;
   }
 
   void addCar(CarModel data) async {
@@ -38,14 +40,6 @@ class CarProvider extends ChangeNotifier {
     allCarList = await carService.getAllCars();
     notifyListeners();
   }
-
-  // void search(String value) {
-  //   searchList = allCarList
-  //       .where((element) =>
-  //           element.carName!.toLowerCase().contains(value.toLowerCase()))
-  //       .toList();
-  //   notifyListeners();
-  // }
 
   void uploadImage(image) async {
     try {
@@ -85,7 +79,7 @@ class CarProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> wishlistCliscked(String id, bool status) async {
+  Future<void> wishlistClicked(String id, bool status) async {
     await carService.wishListClicked(id, status);
     notifyListeners();
   }

@@ -1,15 +1,13 @@
+// ignore_for_file: use_key_in_widget_constructors
+
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:car_sale_firebase/view/select_login.dart';
 import 'package:car_sale_firebase/widget/textstyle_widget.dart';
 import 'package:car_sale_firebase/view/settings/about_app.dart';
-import 'package:car_sale_firebase/controller/bottombar_provider.dart';
 import 'package:car_sale_firebase/view/settings/help_center_page.dart';
 import 'package:car_sale_firebase/view/settings/widgets/settings_screen_widgets.dart';
-import 'package:car_sale_firebase/controller/authentication_provider.dart';
 
 class SettingScreen extends StatelessWidget {
-  const SettingScreen({super.key});
+  const SettingScreen({Key? key});
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +30,7 @@ class SettingScreen extends StatelessWidget {
               ),
               const SizedBox(height: 20),
               SizedBox(
-                height: size.height * .3,
+                height: size.height * .35,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
@@ -60,6 +58,14 @@ class SettingScreen extends StatelessWidget {
                     ),
                     buildSettingItem(
                       context,
+                      icon: Icons.phone,
+                      onTap: () {
+                        contactSheet(context);
+                      },
+                      title: 'Contact RoadWay',
+                    ),
+                    buildSettingItem(
+                      context,
                       icon: Icons.exit_to_app_outlined,
                       onTap: () {
                         sheet(context);
@@ -73,57 +79,6 @@ class SettingScreen extends StatelessWidget {
           ),
         ),
       ),
-    );
-  }
-
-  sheet(BuildContext context) {
-    final authProvider =
-        Provider.of<AuthenticationProvider>(context, listen: false);
-    final bottomProvider = Provider.of<BottomProvider>(context, listen: false);
-    return showDialog(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          title: Column(
-            children: [
-              textPoppins(name: 'LOG OUT', fontweight: FontWeight.w600),
-              const Text(
-                "CONFIRM TO LOG OUT",
-                style: TextStyle(fontWeight: FontWeight.w400, fontSize: 15),
-                textAlign: TextAlign.center,
-              ),
-            ],
-          ),
-          actions: [
-            ElevatedButton(
-                style: const ButtonStyle(
-                  backgroundColor:
-                      MaterialStatePropertyAll(Color.fromARGB(255, 3, 45, 79)),
-                ),
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                child: textPoppins(name: 'CANCEL', color: Colors.white)),
-            ElevatedButton(
-                style: const ButtonStyle(
-                    backgroundColor: MaterialStatePropertyAll(
-                        Color.fromARGB(255, 3, 45, 79))),
-                onPressed: () {
-                  authProvider.googleSignOut();
-                  authProvider.logOut();
-                  Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const SelectLoginScreen(),
-                    ),
-                    (route) => false,
-                  );
-                  bottomProvider.currentIndex = 0;
-                },
-                child: textPoppins(name: 'LOGOUT', color: Colors.white)),
-          ],
-        );
-      },
     );
   }
 }

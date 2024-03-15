@@ -56,7 +56,7 @@ class HomeCarContainer extends StatelessWidget {
                 builder: (context, value, child) => IconButton(
                   onPressed: () {
                     final wish = value.wishlistCheck(product);
-                    value.wishlistCliscked(product.id!, wish);
+                    value.wishlistClicked(product.id!, wish);
                   },
                   icon: value.wishlistCheck(product)
                       ? const Icon(

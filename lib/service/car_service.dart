@@ -45,6 +45,13 @@ class CarService {
                 firebaseAuth.currentUser!.phoneNumber
           ])
         });
+      } else {
+        await car.doc(id).update({
+          'wishlist': FieldValue.arrayRemove([
+            firebaseAuth.currentUser!.email ??
+                firebaseAuth.currentUser!.phoneNumber
+          ])
+        });
       }
     } catch (e) {
       log('got a error of :$e');

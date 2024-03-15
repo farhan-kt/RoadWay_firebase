@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_typing_uninitialized_variables
+
 import 'package:car_sale_firebase/view/home/widgets/home_widgets.dart';
 import 'package:flutter/material.dart';
 
@@ -55,7 +57,7 @@ class CarDetailsScreen extends StatelessWidget {
                 children: [
                   carDetailsText(
                       value: carName,
-                      color: Color(0xFF00246B),
+                      color: const Color(0xFF00246B),
                       fontsize: 32,
                       fontWeight: FontWeight.bold),
                   SizedBox(height: size.height * .01),
@@ -70,7 +72,7 @@ class CarDetailsScreen extends StatelessWidget {
                   SizedBox(height: size.height * .01),
                   carDetailsText(value: description, color: Colors.black54),
                   SizedBox(height: size.height * .02),
-                  Divider(thickness: 1),
+                  const Divider(thickness: 1),
                   carDetailsText(
                       value: 'price',
                       color: Colors.black45,

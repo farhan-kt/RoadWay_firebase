@@ -1,6 +1,10 @@
+import 'package:car_sale_firebase/controller/authentication_provider.dart';
+import 'package:car_sale_firebase/controller/bottombar_provider.dart';
+import 'package:car_sale_firebase/view/select_login.dart';
 import 'package:car_sale_firebase/widget/textstyle_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 Widget buildSettingItem(BuildContext context,
     {required IconData icon,
@@ -75,4 +79,94 @@ class FAQItem extends StatelessWidget {
       ],
     );
   }
+}
+
+contactSheet(BuildContext context) {
+  return showDialog(
+    context: context,
+    builder: (context) {
+      return AlertDialog(
+        title: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                textPoppins(name: 'ROADWAY', fontweight: FontWeight.w500),
+                const SizedBox(height: 10),
+                const Icon(Icons.phone_enabled_sharp)
+              ],
+            ),
+            const SizedBox(height: 10),
+            const Text(
+              "+91 95 676 44 901",
+              style: TextStyle(fontWeight: FontWeight.w900, fontSize: 23),
+              textAlign: TextAlign.center,
+            ),
+          ],
+        ),
+        actions: [
+          TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: textPoppins(
+                  name: 'Back',
+                  fontsize: 15,
+                  fontweight: FontWeight.w500,
+                  color: const Color(0xFF00246B)))
+        ],
+      );
+    },
+  );
+}
+
+sheet(BuildContext context) {
+  final authProvider =
+      Provider.of<AuthenticationProvider>(context, listen: false);
+  final bottomProvider = Provider.of<BottomProvider>(context, listen: false);
+  return showDialog(
+    context: context,
+    builder: (context) {
+      return AlertDialog(
+        title: Column(
+          children: [
+            textPoppins(name: 'LOG OUT', fontweight: FontWeight.w600),
+            const Text(
+              "CONFIRM TO LOG OUT",
+              style: TextStyle(fontWeight: FontWeight.w400, fontSize: 15),
+              textAlign: TextAlign.center,
+            ),
+          ],
+        ),
+        actions: [
+          ElevatedButton(
+              style: const ButtonStyle(
+                backgroundColor:
+                    MaterialStatePropertyAll(Color.fromARGB(255, 3, 45, 79)),
+              ),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: textPoppins(name: 'CANCEL', color: Colors.white)),
+          ElevatedButton(
+              style: const ButtonStyle(
+                  backgroundColor:
+                      MaterialStatePropertyAll(Color.fromARGB(255, 3, 45, 79))),
+              onPressed: () {
+                authProvider.googleSignOut();
+                authProvider.logOut();
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const SelectLoginScreen(),
+                  ),
+                  (route) => false,
+                );
+                bottomProvider.currentIndex = 0;
+              },
+              child: textPoppins(name: 'LOGOUT', color: Colors.white)),
+        ],
+      );
+    },
+  );
 }
