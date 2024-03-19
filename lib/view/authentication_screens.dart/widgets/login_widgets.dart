@@ -81,9 +81,9 @@ class LoginWidgets {
       maxLength: 13,
       controller: authProvider.phoneController,
       onChanged: (value) {},
-      keyboardType: TextInputType.number,
+      keyboardType: TextInputType.phone,
       decoration: const InputDecoration(
-        prefixText: '+91',
+        // prefixText: '+91',
         suffixIcon: Icon(Icons.phone_android_outlined),
         labelText: 'phone number',
         labelStyle: TextStyle(color: Colors.black),

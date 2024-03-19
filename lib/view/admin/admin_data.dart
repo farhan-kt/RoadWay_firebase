@@ -182,6 +182,6 @@ class AdminAddDataScreen extends StatelessWidget {
       wishList: [],
     );
     carProvider.addCar(cars);
-    Navigator.pop(context);
+    // Navigator.pop(context);
   }
 }

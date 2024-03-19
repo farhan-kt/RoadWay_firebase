@@ -43,6 +43,7 @@ class WishListScreen extends StatelessWidget {
                     itemBuilder: (context, index) {
                       final item = wishlistItems[index];
                       return HomeCarContainer(
+                        value: carProvider,
                         product: item,
                       );
                     },

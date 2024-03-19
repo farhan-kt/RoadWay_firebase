@@ -1,15 +1,16 @@
 import 'package:car_sale_firebase/model/car_model.dart';
 import 'package:car_sale_firebase/widget/textstyle_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:car_sale_firebase/controller/car_provider.dart';
 
 class HomeCarContainer extends StatelessWidget {
   // ignore: prefer_typing_uninitialized_variables
   final CarModel product;
+  final CarProvider value;
 
   const HomeCarContainer({
     super.key,
+    required this.value,
     required this.product,
   });
 
@@ -52,22 +53,20 @@ class HomeCarContainer extends StatelessWidget {
                   fontSize: 14,
                 ),
               ),
-              Consumer<CarProvider>(
-                builder: (context, value, child) => IconButton(
-                  onPressed: () {
-                    final wish = value.wishlistCheck(product);
-                    value.wishlistClicked(product.id!, wish);
-                  },
-                  icon: value.wishlistCheck(product)
-                      ? const Icon(
-                          Icons.favorite_border_outlined,
-                          color: Colors.red,
-                        )
-                      : const Icon(
-                          Icons.favorite,
-                          color: Colors.red,
-                        ),
-                ),
+              IconButton(
+                onPressed: () {
+                  final wish = value.wishListCheck(product);
+                  value.wishlistClicked(product.id!, wish);
+                },
+                icon: value.wishListCheck(product)
+                    ? const Icon(
+                        Icons.favorite_border_outlined,
+                        color: Colors.red,
+                      )
+                    : const Icon(
+                        Icons.favorite,
+                        color: Colors.red,
+                      ),
               )
             ],
           )

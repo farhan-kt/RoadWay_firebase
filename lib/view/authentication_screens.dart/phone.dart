@@ -49,12 +49,14 @@ class PhoneScreen extends StatelessWidget {
                     onPressed: () {
                   if (authProvider.otpFormKey.currentState!.validate()) {
                     try {
-                      authProvider
-                          .getOtp('+91${authProvider.phoneController.text}');
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const OtpScreen()));
+                      authProvider.getOtp(
+                          // '+91${
+
+                          authProvider.phoneController.text
+                          // }'
+                          );
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => OtpScreen()));
                       authProvider.clearPhoneController();
                       SnackBarWidget().showSuccessSnackbar(
                           context, 'OTP had send successfully');

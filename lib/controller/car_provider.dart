@@ -11,6 +11,7 @@ class CarProvider extends ChangeNotifier {
   File? pickedImage;
   String imageName = DateTime.now().microsecondsSinceEpoch.toString();
   String? downloadUrl;
+  bool isLoading = false;
 
   CarService carService = CarService();
   final ImagePicker imagePicker = ImagePicker();
@@ -37,7 +38,10 @@ class CarProvider extends ChangeNotifier {
   }
 
   void getAllCar() async {
+    isLoading = true;
+
     allCarList = await carService.getAllCars();
+    isLoading = false;
     notifyListeners();
   }
 
@@ -84,9 +88,19 @@ class CarProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  bool wishlistCheck(CarModel car) {
+  bool wishListCheck(CarModel product) {
     final currentUser = FirebaseAuth.instance.currentUser;
-    final user = currentUser!.email ?? currentUser.phoneNumber;
-    return !car.wishList.contains(user);
+    if (currentUser != null) {
+      final user = currentUser.email ?? currentUser.phoneNumber;
+      if (product.wishList.contains(user)) {
+        getAllCar();
+        return false;
+      } else {
+        getAllCar();
+        return true;
+      }
+    } else {
+      return true;
+    }
   }
 }

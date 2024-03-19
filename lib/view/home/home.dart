@@ -1,11 +1,11 @@
-import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:car_sale_firebase/controller/car_provider.dart';
-import 'package:car_sale_firebase/view/home/car_details_screen.dart';
-import 'package:car_sale_firebase/view/home/widgets/home_product_details_container.dart';
-import 'package:car_sale_firebase/view/home/widgets/home_widgets.dart';
 import 'package:car_sale_firebase/widget/textstyle_widget.dart';
+import 'package:car_sale_firebase/view/home/car_details_screen.dart';
+import 'package:car_sale_firebase/view/home/widgets/home_widgets.dart';
+import 'package:car_sale_firebase/view/home/widgets/home_product_details_container.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -57,7 +57,9 @@ class HomeScreen extends StatelessWidget {
             Expanded(
               child: Consumer<CarProvider>(
                 builder: (context, carValue, child) {
-                  if (carValue.searchList.isEmpty &&
+                  if (carValue.isLoading) {
+                    return const Center(child: CircularProgressIndicator());
+                  } else if (carValue.searchList.isEmpty &&
                       carValue.searchController.text.isNotEmpty) {
                     return Center(
                         child: Center(
@@ -95,6 +97,7 @@ class HomeScreen extends StatelessWidget {
                               );
                             },
                             child: HomeCarContainer(
+                              value: carProvider,
                               product: cars,
                             ),
                           );
@@ -126,6 +129,7 @@ class HomeScreen extends StatelessWidget {
                               );
                             },
                             child: HomeCarContainer(
+                              value: carProvider,
                               product: car,
                             ));
                       },

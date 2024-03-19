@@ -66,6 +66,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '825528106452',
     projectId: 'roadway-carsale',
     storageBucket: 'roadway-carsale.appspot.com',
+    androidClientId: '825528106452-t598hni13sd9p9cl994c8ktmeu101k3e.apps.googleusercontent.com',
     iosClientId: '825528106452-7vf374p7nrk44o2k6kf0danf5t7u4bie.apps.googleusercontent.com',
     iosBundleId: 'com.example.carSaleFirebase',
   );
@@ -76,6 +77,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '825528106452',
     projectId: 'roadway-carsale',
     storageBucket: 'roadway-carsale.appspot.com',
+    androidClientId: '825528106452-t598hni13sd9p9cl994c8ktmeu101k3e.apps.googleusercontent.com',
     iosClientId: '825528106452-0ridhjjl27amgn00mediogdbahe3n254.apps.googleusercontent.com',
     iosBundleId: 'com.example.carSaleFirebase.RunnerTests',
   );

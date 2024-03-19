@@ -25,6 +25,7 @@ class AuthenticationService {
 
       return userCredential;
     } catch (e) {
+      log('error got with : $e');
       rethrow;
     }
   }
@@ -117,18 +118,41 @@ class AuthenticationService {
     }
   }
 
+  // Future<PhoneAuthCredential?> verifyOtp(String otp, context) async {
+  //   try {
+  //     PhoneAuthCredential credential = PhoneAuthProvider.credential(
+  //         verificationId: verificationid!, smsCode: otp);
+  //     await firebaseAuth.signInWithCredential(credential).then((value) {
+  //       Navigator.pushAndRemoveUntil(
+  //           context,
+  //           MaterialPageRoute(builder: (context) => BottomScreen()),
+  //           (route) => false);
+  //     });
+
+  //     SnackBarWidget().showSuccessSnackbar(context, 'otp verified');
+  //   } catch (error) {
+  //     log('error in otp verification :$error');
+  //     return null;
+  //   }
+  //   return null;
+  // }
+
   Future<PhoneAuthCredential?> verifyOtp(String otp, context) async {
     try {
       PhoneAuthCredential credential = PhoneAuthProvider.credential(
           verificationId: verificationid!, smsCode: otp);
+      // return credential;
+      // Navigator.pus
       await firebaseAuth.signInWithCredential(credential);
       Navigator.pushAndRemoveUntil(
           context,
-          MaterialPageRoute(builder: (context) => BottomScreen()),
+          MaterialPageRoute(
+            builder: (context) => BottomScreen(),
+          ),
           (route) => false);
-      SnackBarWidget().showSuccessSnackbar(context, 'otp verified');
-    } catch (error) {
-      log('error in otp verification :$error');
+      SnackBarWidget().showSuccessSnackbar(context, "OTP validated");
+    } catch (e) {
+      log("verify otp error $e");
       return null;
     }
     return null;
