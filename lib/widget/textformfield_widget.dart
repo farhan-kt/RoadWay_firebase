@@ -9,6 +9,7 @@ class CustomTextFormField extends StatelessWidget {
   final OutlineInputBorder? focusedBorder;
   final OutlineInputBorder? focusErrorBorder;
   final Widget? suffixIcon;
+  final String? validateMsg;
 
   const CustomTextFormField({
     super.key,
@@ -19,6 +20,7 @@ class CustomTextFormField extends StatelessWidget {
     this.focusedBorder,
     this.focusErrorBorder,
     this.suffixIcon,
+    this.validateMsg,
   });
 
   @override
@@ -27,7 +29,7 @@ class CustomTextFormField extends StatelessWidget {
       obscureText: obscureText ?? false,
       validator: (value) {
         if (value == null || value.isEmpty) {
-          return 'Value is empty';
+          return validateMsg ?? 'value is empty';
         } else {
           return null;
         }

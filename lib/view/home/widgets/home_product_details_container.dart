@@ -1,7 +1,10 @@
+import 'package:car_sale_firebase/controller/authentication_provider.dart';
 import 'package:car_sale_firebase/model/car_model.dart';
+import 'package:car_sale_firebase/widget/normal_widgets.dart';
 import 'package:car_sale_firebase/widget/textstyle_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:car_sale_firebase/controller/car_provider.dart';
+import 'package:provider/provider.dart';
 
 class HomeCarContainer extends StatelessWidget {
   // ignore: prefer_typing_uninitialized_variables
@@ -17,6 +20,9 @@ class HomeCarContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    final authProvider =
+        Provider.of<AuthenticationProvider>(context, listen: false);
+    final carProvider = Provider.of<CarProvider>(context, listen: false);
     return Container(
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
@@ -53,21 +59,35 @@ class HomeCarContainer extends StatelessWidget {
                   fontSize: 14,
                 ),
               ),
-              IconButton(
-                onPressed: () {
-                  final wish = value.wishListCheck(product);
-                  value.wishlistClicked(product.id!, wish);
-                },
-                icon: value.wishListCheck(product)
-                    ? const Icon(
-                        Icons.favorite_border_outlined,
+              authProvider.isAdminHome
+                  ? IconButton(
+                      onPressed: () {
+                        alertSheet(context, onPressed: () {
+                          carProvider.deleteCar(product.id!);
+                          Navigator.pop(context);
+                        },
+                            alertMessage: 'Are You Sure To Delete The Car',
+                            confirmButtonLabel: 'DELETE');
+                      },
+                      icon: const Icon(
+                        Icons.delete,
                         color: Colors.red,
-                      )
-                    : const Icon(
-                        Icons.favorite,
-                        color: Colors.red,
-                      ),
-              )
+                      ))
+                  : IconButton(
+                      onPressed: () {
+                        final wish = value.wishListCheck(product);
+                        value.wishlistClicked(product.id!, wish);
+                      },
+                      icon: value.wishListCheck(product)
+                          ? const Icon(
+                              Icons.favorite_border_outlined,
+                              color: Colors.red,
+                            )
+                          : const Icon(
+                              Icons.favorite,
+                              color: Colors.red,
+                            ),
+                    )
             ],
           )
         ],

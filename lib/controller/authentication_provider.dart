@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:car_sale_firebase/view/admin/admin_data.dart';
 import 'package:car_sale_firebase/service/authentication_service.dart';
 
 class AuthenticationProvider extends ChangeNotifier {
@@ -15,21 +14,13 @@ class AuthenticationProvider extends ChangeNotifier {
   TextEditingController otpController = TextEditingController();
   bool obscureText = true;
   bool isLoading = false;
+  bool isAdminHome = false;
   final loginFormkey = GlobalKey<FormState>();
   final registerFormkey = GlobalKey<FormState>();
   final otpFormKey = GlobalKey<FormState>();
   final adminFormkey = GlobalKey<FormState>();
   final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
   final AuthenticationService authService = AuthenticationService();
-
-  void adminLogin(context) {
-    if (adminController.text == 'farhan' && adminPassController.text == '123') {
-      Navigator.push(context,
-          MaterialPageRoute(builder: (context) => const AdminAddDataScreen()));
-      adminController.clear();
-      adminPassController.clear();
-    }
-  }
 
   void clearAdminController() {
     adminController.clear();

@@ -33,12 +33,14 @@ class ButtonWidgets {
     );
   }
 
-  Widget imageButton(
+  Widget rectangleButtonWidth(
     Size size, {
     required String name,
     required VoidCallback? onPressed,
     double? height,
     double? width,
+    Color? bgColor,
+    Color? fgColor,
   }) {
     return Container(
       decoration: BoxDecoration(
@@ -50,8 +52,8 @@ class ButtonWidgets {
       child: ElevatedButton(
         style: ButtonStyle(
           shape: const MaterialStatePropertyAll(BeveledRectangleBorder()),
-          backgroundColor: MaterialStateProperty.all(Colors.black),
-          foregroundColor: MaterialStateProperty.all(Colors.white),
+          backgroundColor: MaterialStateProperty.all(bgColor ?? Colors.black),
+          foregroundColor: MaterialStateProperty.all(fgColor ?? Colors.white),
         ),
         onPressed: onPressed,
         child: Text(name,

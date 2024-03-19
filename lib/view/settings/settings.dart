@@ -1,9 +1,14 @@
 // ignore_for_file: use_key_in_widget_constructors
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:car_sale_firebase/view/select_login.dart';
+import 'package:car_sale_firebase/widget/normal_widgets.dart';
 import 'package:car_sale_firebase/widget/textstyle_widget.dart';
 import 'package:car_sale_firebase/view/settings/about_app.dart';
+import 'package:car_sale_firebase/controller/bottombar_provider.dart';
 import 'package:car_sale_firebase/view/settings/help_center_page.dart';
+import 'package:car_sale_firebase/controller/authentication_provider.dart';
 import 'package:car_sale_firebase/view/settings/widgets/settings_screen_widgets.dart';
 
 class SettingScreen extends StatelessWidget {
@@ -11,6 +16,9 @@ class SettingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final authProvider =
+        Provider.of<AuthenticationProvider>(context, listen: false);
+    final bottomProvider = Provider.of<BottomProvider>(context, listen: false);
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: Padding(
@@ -68,7 +76,20 @@ class SettingScreen extends StatelessWidget {
                       context,
                       icon: Icons.exit_to_app_outlined,
                       onTap: () {
-                        sheet(context);
+                        alertSheet(context,
+                            alertMessage: 'ARE YOU SURE TO LOGOUT ?',
+                            onPressed: () {
+                          authProvider.googleSignOut();
+                          authProvider.logOut();
+                          Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const SelectLoginScreen(),
+                            ),
+                            (route) => false,
+                          );
+                          bottomProvider.currentIndex = 0;
+                        }, confirmButtonLabel: 'LOGOUT');
                       },
                       title: 'Log Out',
                     )

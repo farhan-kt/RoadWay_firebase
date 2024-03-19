@@ -1,10 +1,12 @@
 import 'package:lottie/lottie.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:car_sale_firebase/view/admin/admin_data.dart';
 import 'package:car_sale_firebase/controller/car_provider.dart';
 import 'package:car_sale_firebase/widget/textstyle_widget.dart';
 import 'package:car_sale_firebase/view/home/car_details_screen.dart';
 import 'package:car_sale_firebase/view/home/widgets/home_widgets.dart';
+import 'package:car_sale_firebase/controller/authentication_provider.dart';
 import 'package:car_sale_firebase/view/home/widgets/home_product_details_container.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -15,6 +17,8 @@ class HomeScreen extends StatelessWidget {
     final carProvider = Provider.of<CarProvider>(context, listen: false);
     Size size = MediaQuery.of(context).size;
     Provider.of<CarProvider>(context, listen: false).getAllCar();
+    final authProvider =
+        Provider.of<AuthenticationProvider>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -23,11 +27,13 @@ class HomeScreen extends StatelessWidget {
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            textPoppins(
-                name: 'Find Your Perfect',
-                color: const Color(0xFFCADCFC),
-                fontsize: 25,
-                fontweight: FontWeight.w700),
+            authProvider.isAdminHome
+                ? adminHomeAppBarLogOutBtn(context)
+                : textPoppins(
+                    name: 'Find Your Perfect',
+                    color: const Color(0xFFCADCFC),
+                    fontsize: 25,
+                    fontweight: FontWeight.w700),
             Row(
               children: [
                 textPoppins(
@@ -141,6 +147,21 @@ class HomeScreen extends StatelessWidget {
           ],
         ),
       ),
+      floatingActionButton: authProvider.isAdminHome
+          ? FloatingActionButton.extended(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const AdminAddDataScreen()));
+              },
+              label: textPoppins(
+                  name: 'ADD CAR',
+                  color: const Color(0xFFCADCFC),
+                  fontweight: FontWeight.w700),
+              backgroundColor: const Color(0xFF00246B),
+            )
+          : null,
     );
   }
 }

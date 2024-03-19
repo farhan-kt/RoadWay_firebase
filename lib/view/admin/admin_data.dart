@@ -22,112 +22,125 @@ class AdminAddDataScreen extends StatelessWidget {
     );
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+        padding: const EdgeInsets.symmetric(
+          horizontal: 15,
+        ),
         child: Center(
           child: SingleChildScrollView(
             scrollDirection: Axis.vertical,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Row(
-                  children: [
-                    IconButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                          carProvider.clearCarControllers();
-                        },
-                        icon: const Icon(Icons.arrow_back_ios)),
-                    SizedBox(width: size.width * .19),
-                    textPoppins(
-                      name: 'RoadWay',
-                      fontsize: 25,
-                      fontweight: FontWeight.w600,
-                    ),
-                  ],
-                ),
-                textAbel(
-                  name: 'M  O  T  O  R  S',
-                  fontsize: 17,
-                  fontweight: FontWeight.w800,
-                ),
-                const SizedBox(height: 30),
-                SizedBox(
-                  height: size.height * .25,
-                  child: Padding(
-                    padding: const EdgeInsets.all(5),
-                    child: Column(
-                      children: [
-                        Consumer<CarProvider>(
-                          builder: (context, value, child) => GestureDetector(
-                            onTap: () {
-                              pickImage(context);
-                            },
-                            child: Container(
-                              height: size.height * .2,
-                              width: size.width * .9,
-                              decoration: BoxDecoration(
-                                borderRadius:
-                                    const BorderRadius.all(Radius.circular(10)),
-                                border:
-                                    Border.all(color: Colors.black, width: 2),
-                                image: value.pickedImage != null
-                                    ? DecorationImage(
-                                        image: FileImage(value.pickedImage!),
-                                        fit: BoxFit.contain,
-                                      )
-                                    : null,
+            child: Form(
+              key: carProvider.carDataFormKey,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Row(
+                    children: [
+                      IconButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                            carProvider.clearCarControllers();
+                          },
+                          icon: const Icon(Icons.arrow_back_ios)),
+                      SizedBox(width: size.width * .19),
+                      textPoppins(
+                        name: 'RoadWay',
+                        fontsize: 25,
+                        fontweight: FontWeight.w600,
+                      ),
+                    ],
+                  ),
+                  textAbel(
+                    name: 'M  O  T  O  R  S',
+                    fontsize: 17,
+                    fontweight: FontWeight.w800,
+                  ),
+                  const SizedBox(height: 30),
+                  SizedBox(
+                    height: size.height * .25,
+                    child: Padding(
+                      padding: const EdgeInsets.all(5),
+                      child: Column(
+                        children: [
+                          Consumer<CarProvider>(
+                            builder: (context, value, child) => GestureDetector(
+                              onTap: () {
+                                pickImage(context);
+                              },
+                              child: Container(
+                                height: size.height * .2,
+                                width: size.width * .9,
+                                decoration: BoxDecoration(
+                                  borderRadius: const BorderRadius.all(
+                                      Radius.circular(10)),
+                                  border:
+                                      Border.all(color: Colors.black, width: 2),
+                                  image: value.pickedImage != null
+                                      ? DecorationImage(
+                                          image: FileImage(value.pickedImage!),
+                                          fit: BoxFit.contain,
+                                        )
+                                      : null,
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
-                ),
-                SizedBox(
-                  height: size.height * .5,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      CustomTextFormField(
-                        labelText: 'Car Name',
-                        controller: carProvider.carNameController,
-                        enabledBorder: inputBorderColor,
-                        focusedBorder: inputBorderColor,
-                        focusErrorBorder: inputBorderColor,
-                      ),
-                      CustomTextFormField(
-                        labelText: 'Kms',
-                        controller: carProvider.kmController,
-                        enabledBorder: inputBorderColor,
-                        focusedBorder: inputBorderColor,
-                        focusErrorBorder: inputBorderColor,
-                      ),
-                      CustomTextFormField(
-                        labelText: 'Description',
-                        controller: carProvider.descriptionController,
-                        enabledBorder: inputBorderColor,
-                        focusedBorder: inputBorderColor,
-                        focusErrorBorder: inputBorderColor,
-                      ),
-                      CustomTextFormField(
-                        labelText: 'Price',
-                        controller: carProvider.priceController,
-                        enabledBorder: inputBorderColor,
-                        focusedBorder: inputBorderColor,
-                        focusErrorBorder: inputBorderColor,
-                      ),
-                      ButtonWidgets().rectangleButton(size, name: 'ADD CAR',
-                          onPressed: () {
-                        addData(context);
-                        carProvider.uploadImage(carProvider.downloadUrl);
-                        carProvider.clearCarControllers();
-                      }, bgColor: Colors.black, fgColor: Colors.white),
-                    ],
-                  ),
-                )
-              ],
+                  SizedBox(
+                    height: size.height * .5,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        CustomTextFormField(
+                          labelText: 'Car Name',
+                          controller: carProvider.carNameController,
+                          enabledBorder: inputBorderColor,
+                          focusedBorder: inputBorderColor,
+                          focusErrorBorder: inputBorderColor,
+                          validateMsg: 'Enter CarName',
+                        ),
+                        CustomTextFormField(
+                          labelText: 'Kms',
+                          controller: carProvider.kmController,
+                          enabledBorder: inputBorderColor,
+                          focusedBorder: inputBorderColor,
+                          focusErrorBorder: inputBorderColor,
+                          validateMsg: 'Enter Km',
+                        ),
+                        CustomTextFormField(
+                          labelText: 'Description',
+                          controller: carProvider.descriptionController,
+                          enabledBorder: inputBorderColor,
+                          focusedBorder: inputBorderColor,
+                          focusErrorBorder: inputBorderColor,
+                          validateMsg: 'Enter Description',
+                        ),
+                        CustomTextFormField(
+                          labelText: 'Price',
+                          controller: carProvider.priceController,
+                          enabledBorder: inputBorderColor,
+                          focusedBorder: inputBorderColor,
+                          focusErrorBorder: inputBorderColor,
+                          validateMsg: 'Enter price',
+                        ),
+                        const SizedBox(height: 10),
+                        ButtonWidgets().rectangleButton(size, name: 'ADD CAR',
+                            onPressed: () {
+                          if (carProvider.carDataFormKey.currentState!
+                              .validate()) {
+                            addData(context);
+                            carProvider.uploadImage(carProvider.downloadUrl);
+                            carProvider.clearCarControllers();
+                          }
+                        }, bgColor: Colors.black, fgColor: Colors.white),
+                      ],
+                    ),
+                  )
+                ],
+              ),
             ),
           ),
         ),
@@ -182,6 +195,5 @@ class AdminAddDataScreen extends StatelessWidget {
       wishList: [],
     );
     carProvider.addCar(cars);
-    // Navigator.pop(context);
   }
 }

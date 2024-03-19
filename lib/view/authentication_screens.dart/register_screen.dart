@@ -51,8 +51,10 @@ class RegisterScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       CustomTextFormField(
-                          labelText: 'Email',
-                          controller: authProvider.registerEmailController),
+                        labelText: 'Email',
+                        controller: authProvider.registerEmailController,
+                        validateMsg: 'Enter a Email',
+                      ),
                       Consumer<AuthenticationProvider>(
                           builder: (context, value, child) {
                         return Column(
@@ -61,6 +63,7 @@ class RegisterScreen extends StatelessWidget {
                               labelText: 'Password',
                               controller:
                                   authProvider.registerPasswordController,
+                              validateMsg: 'Enter a New Password',
                               obscureText: value.obscureText,
                               suffixIcon: IconButton(
                                 icon: Icon(value.obscureText
@@ -77,6 +80,7 @@ class RegisterScreen extends StatelessWidget {
                               controller:
                                   authProvider.confirmPasswordController,
                               obscureText: value.obscureText,
+                              validateMsg: 'Re-Enter Your Password',
                             ),
                           ],
                         );
@@ -106,7 +110,7 @@ class RegisterScreen extends StatelessWidget {
                                     context, 'Registeration success');
                               } else {
                                 SnackBarWidget().showErrorSnackbar(
-                                    context, 'passwords do not match');
+                                    context, 'passwords does not match');
                               }
                             } catch (e) {
                               SnackBarWidget().showErrorSnackbar(context,

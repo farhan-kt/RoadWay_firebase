@@ -13,6 +13,8 @@ class CarProvider extends ChangeNotifier {
   String? downloadUrl;
   bool isLoading = false;
 
+  final carDataFormKey = GlobalKey<FormState>();
+
   CarService carService = CarService();
   final ImagePicker imagePicker = ImagePicker();
   final FirebaseStorage storage = FirebaseStorage.instance;
@@ -34,6 +36,11 @@ class CarProvider extends ChangeNotifier {
 
   void addCar(CarModel data) async {
     await carService.addCar(data);
+    getAllCar();
+  }
+
+  void deleteCar(String id) async {
+    await carService.deleteCar(id);
     getAllCar();
   }
 

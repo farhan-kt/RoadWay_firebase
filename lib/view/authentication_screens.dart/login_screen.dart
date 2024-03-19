@@ -46,13 +46,16 @@ class LoginScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       CustomTextFormField(
-                          labelText: 'Email',
-                          controller: authProvider.loginEmailController),
+                        labelText: 'Email',
+                        controller: authProvider.loginEmailController,
+                        validateMsg: 'Enter Your E-mail',
+                      ),
                       Consumer<AuthenticationProvider>(
                         builder: (context, value, child) => CustomTextFormField(
                           labelText: 'Password',
                           controller: authProvider.loginPasswordController,
                           obscureText: value.obscureText,
+                          validateMsg: 'Enter Your Password',
                           suffixIcon: IconButton(
                             icon: Icon(value.obscureText
                                 ? Icons.visibility_off_outlined
@@ -81,8 +84,8 @@ class LoginScreen extends StatelessWidget {
                                 context, 'login successfull');
                             authProvider.clearLoginControllers();
                           } catch (e) {
-                            SnackBarWidget()
-                                .showErrorSnackbar(context, 'failed to login');
+                            SnackBarWidget().showErrorSnackbar(
+                                context, 'Email or Password is incorrect');
                           }
                         }
                       },

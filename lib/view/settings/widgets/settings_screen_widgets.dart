@@ -121,9 +121,6 @@ contactSheet(BuildContext context) {
 }
 
 sheet(BuildContext context) {
-  final authProvider =
-      Provider.of<AuthenticationProvider>(context, listen: false);
-  final bottomProvider = Provider.of<BottomProvider>(context, listen: false);
   return showDialog(
     context: context,
     builder: (context) {
@@ -152,18 +149,7 @@ sheet(BuildContext context) {
               style: const ButtonStyle(
                   backgroundColor:
                       MaterialStatePropertyAll(Color.fromARGB(255, 3, 45, 79))),
-              onPressed: () {
-                authProvider.googleSignOut();
-                authProvider.logOut();
-                Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const SelectLoginScreen(),
-                  ),
-                  (route) => false,
-                );
-                bottomProvider.currentIndex = 0;
-              },
+              onPressed: () {},
               child: textPoppins(name: 'LOGOUT', color: Colors.white)),
         ],
       );

@@ -141,8 +141,7 @@ class AuthenticationService {
     try {
       PhoneAuthCredential credential = PhoneAuthProvider.credential(
           verificationId: verificationid!, smsCode: otp);
-      // return credential;
-      // Navigator.pus
+
       await firebaseAuth.signInWithCredential(credential);
       Navigator.pushAndRemoveUntil(
           context,
