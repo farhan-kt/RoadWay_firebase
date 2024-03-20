@@ -1,10 +1,6 @@
-import 'package:car_sale_firebase/controller/authentication_provider.dart';
-import 'package:car_sale_firebase/controller/bottombar_provider.dart';
-import 'package:car_sale_firebase/view/select_login.dart';
 import 'package:car_sale_firebase/widget/textstyle_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
 Widget buildSettingItem(BuildContext context,
     {required IconData icon,
