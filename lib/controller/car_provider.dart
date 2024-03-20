@@ -6,6 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:intl/intl.dart';
 
 class CarProvider extends ChangeNotifier {
   File? pickedImage;
@@ -23,8 +24,23 @@ class CarProvider extends ChangeNotifier {
   TextEditingController priceController = TextEditingController();
   TextEditingController kmController = TextEditingController();
   TextEditingController searchController = TextEditingController();
+  TextEditingController dateController = TextEditingController();
   List<CarModel> searchList = [];
   List<CarModel> allCarList = [];
+
+  Future<void> selectDate(BuildContext context) async {
+    final DateTime? pickedDate = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime.now(),
+      lastDate: DateTime(2101),
+    );
+
+    if (pickedDate != null) {
+      dateController.text = DateFormat('dd-MM-yyyy').format(pickedDate);
+    }
+    notifyListeners();
+  }
 
   void clearCarControllers() {
     carNameController.clear();

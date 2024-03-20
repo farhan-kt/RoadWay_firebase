@@ -6,17 +6,19 @@ import 'package:flutter/material.dart';
 class CarDetailsScreen extends StatelessWidget {
   final carName;
   final description;
-  final catergory;
+  final km;
   final price;
   final image;
+  final date;
 
   const CarDetailsScreen(
       {super.key,
       this.carName,
       this.description,
-      this.catergory,
+      this.km,
       this.price,
-      this.image});
+      this.image,
+      this.date});
 
   @override
   Widget build(BuildContext context) {
@@ -61,11 +63,21 @@ class CarDetailsScreen extends StatelessWidget {
                       fontsize: 32,
                       fontWeight: FontWeight.bold),
                   SizedBox(height: size.height * .01),
-                  carDetailsText(
-                      value: catergory,
-                      color: Colors.black54,
-                      fontWeight: FontWeight.w600,
-                      fontsize: 16),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      carDetailsText(
+                          value: '${km} Km',
+                          color: Colors.black54,
+                          fontWeight: FontWeight.w600,
+                          fontsize: 16),
+                      carDetailsText(
+                          value: date,
+                          color: Colors.black54,
+                          fontWeight: FontWeight.w600,
+                          fontsize: 16)
+                    ],
+                  ),
                   SizedBox(height: size.height * .02),
                   carDetailsText(
                       value: 'Description', fontWeight: FontWeight.w500),

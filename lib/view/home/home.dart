@@ -95,9 +95,10 @@ class HomeScreen extends StatelessWidget {
                                   builder: (context) => CarDetailsScreen(
                                     carName: cars.carName,
                                     description: cars.description,
-                                    catergory: cars.km,
+                                    km: cars.km,
                                     price: cars.price,
                                     image: NetworkImage(cars.image.toString()),
+                                    date: cars.date,
                                   ),
                                 ),
                               );

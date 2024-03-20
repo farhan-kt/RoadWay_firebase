@@ -1,11 +1,11 @@
 // ignore_for_file: must_be_immutable
 
 import 'dart:io';
+import 'package:car_sale_firebase/widget/button_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:car_sale_firebase/model/car_model.dart';
-import 'package:car_sale_firebase/widget/button_widget.dart';
 import 'package:car_sale_firebase/controller/car_provider.dart';
 import 'package:car_sale_firebase/widget/textstyle_widget.dart';
 import 'package:car_sale_firebase/widget/textformfield_widget.dart';
@@ -90,7 +90,7 @@ class AdminAddDataScreen extends StatelessWidget {
                     ),
                   ),
                   SizedBox(
-                    height: size.height * .5,
+                    height: size.height * .55,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
@@ -110,6 +110,7 @@ class AdminAddDataScreen extends StatelessWidget {
                           focusErrorBorder: inputBorderColor,
                           validateMsg: 'Enter Km',
                         ),
+                        dateTextFormField(),
                         CustomTextFormField(
                           labelText: 'Description',
                           controller: carProvider.descriptionController,
@@ -191,6 +192,7 @@ class AdminAddDataScreen extends StatelessWidget {
       description: carProvider.descriptionController.text,
       price: int.parse(carProvider.priceController.text),
       km: carProvider.kmController.text,
+      date: carProvider.dateController.text,
       image: carProvider.downloadUrl,
       wishList: [],
     );

@@ -1,4 +1,6 @@
+import 'package:car_sale_firebase/controller/car_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class CustomTextFormField extends StatelessWidget {
   final String? labelText;
@@ -50,4 +52,37 @@ class CustomTextFormField extends StatelessWidget {
           focusedErrorBorder: focusErrorBorder),
     );
   }
+}
+
+Widget dateTextFormField() {
+  return Consumer<CarProvider>(
+    builder: (context, value, child) => TextFormField(
+      onTap: () => value.selectDate(context),
+      validator: (value) {
+        if (value == null || value.isEmpty) {
+          return "Please select Date";
+        } else {
+          return null;
+        }
+      },
+      controller: value.dateController,
+      keyboardType: TextInputType.datetime,
+      decoration: InputDecoration(
+        fillColor: Colors.grey[200],
+        labelText: 'Date',
+        suffixIcon: IconButton(
+          onPressed: () {
+            value.selectDate(context);
+          },
+          icon: const Icon(Icons.calendar_today),
+        ),
+        focusedBorder: const OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.black),
+        ),
+        border: const OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(10)),
+        ),
+      ),
+    ),
+  );
 }
