@@ -1,15 +1,16 @@
 import 'dart:developer';
 import 'package:car_sale_firebase/widget/bottom_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:car_sale_firebase/widget/button_widget.dart';
-import 'package:car_sale_firebase/widget/snackbar_widget.dart';
 import 'package:car_sale_firebase/widget/textstyle_widget.dart';
 import 'package:car_sale_firebase/controller/authentication_provider.dart';
 import 'package:car_sale_firebase/view/authentication_screens.dart/widgets/login_widgets.dart';
 
 class OtpScreen extends StatelessWidget {
-  OtpScreen({super.key});
+  final String verificationId;
+  OtpScreen({super.key, required this.verificationId});
   final formkey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
@@ -46,22 +47,44 @@ class OtpScreen extends StatelessWidget {
                     ),
                     ButtonWidgets().rectangleButton(size, name: 'V E R I F Y',
                         onPressed: () {
-                      if (formkey.currentState!.validate()) {
+                      // if (formkey.currentState!.validate()) {
+                      //   try {
+                      //     authProvider.verifyOtp(
+                      //         authProvider.otpController.text, context);
+                      //     // Navigator.pushAndRemoveUntil(
+                      //     //     context,
+                      //     //     MaterialPageRoute(
+                      //     //         builder: (context) => BottomScreen()),
+                      //     //     (route) => false);
+                      //   } catch (e) {
+                      //     log('error during otp: $e');
+                      //     SnackBarWidget()
+                      //         .showErrorSnackbar(context, 'Invalid OTP');
+                      //   }
+                      // } else {
+                      //   log('aaaaaa');
+                      // }
+
+                      if (authProvider.otpController.text.isNotEmpty) {
                         try {
-                          authProvider.verifyOtp(
-                              authProvider.otpController.text, context);
-                          Navigator.pushAndRemoveUntil(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => BottomScreen()),
-                              (route) => false);
-                        } catch (e) {
-                          log('error during otp: $e');
-                          SnackBarWidget()
-                              .showErrorSnackbar(context, 'Invalid OTP');
+                          PhoneAuthCredential credential =
+                              PhoneAuthProvider.credential(
+                                  verificationId: verificationId,
+                                  smsCode: authProvider.otpController.text
+                                      .toString());
+                          FirebaseAuth.instance
+                              .signInWithCredential(credential)
+                              .then((value) {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => BottomScreen()));
+                          });
+                        } catch (ex) {
+                          log(ex.toString());
                         }
                       } else {
-                        log('aaaaaa');
+                        log('otp is empty');
                       }
                     })
                   ],

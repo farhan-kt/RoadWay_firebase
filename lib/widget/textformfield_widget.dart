@@ -12,6 +12,7 @@ class CustomTextFormField extends StatelessWidget {
   final OutlineInputBorder? focusErrorBorder;
   final Widget? suffixIcon;
   final String? validateMsg;
+  final TextInputType? keyboardType;
 
   const CustomTextFormField({
     super.key,
@@ -23,6 +24,7 @@ class CustomTextFormField extends StatelessWidget {
     this.focusErrorBorder,
     this.suffixIcon,
     this.validateMsg,
+    this.keyboardType,
   });
 
   @override
@@ -36,6 +38,7 @@ class CustomTextFormField extends StatelessWidget {
           return null;
         }
       },
+      keyboardType: keyboardType,
       controller: controller,
       decoration: InputDecoration(
           suffixIcon: suffixIcon,

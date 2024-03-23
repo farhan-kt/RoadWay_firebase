@@ -13,6 +13,7 @@ class CarProvider extends ChangeNotifier {
   String imageName = DateTime.now().microsecondsSinceEpoch.toString();
   String? downloadUrl;
   bool isLoading = false;
+  bool isAddingData = false;
 
   final carDataFormKey = GlobalKey<FormState>();
 
@@ -27,6 +28,11 @@ class CarProvider extends ChangeNotifier {
   TextEditingController dateController = TextEditingController();
   List<CarModel> searchList = [];
   List<CarModel> allCarList = [];
+
+  void setIsAddingData(bool value) {
+    isAddingData = value;
+    notifyListeners();
+  }
 
   Future<void> selectDate(BuildContext context) async {
     final DateTime? pickedDate = await showDatePicker(
@@ -45,6 +51,7 @@ class CarProvider extends ChangeNotifier {
   void clearCarControllers() {
     carNameController.clear();
     kmController.clear();
+    dateController.clear();
     descriptionController.clear();
     priceController.clear();
     pickedImage = null;
@@ -52,6 +59,8 @@ class CarProvider extends ChangeNotifier {
 
   void addCar(CarModel data) async {
     await carService.addCar(data);
+
+    notifyListeners();
     getAllCar();
   }
 
@@ -68,20 +77,21 @@ class CarProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void uploadImage(image) async {
+  Future<String> uploadImage(image, imageName) async {
     try {
       if (image != null) {
-        downloadUrl = await carService.uploadImage(imageName, image);
+        String downloadUrl = await carService.uploadImage(imageName, image);
+        log(downloadUrl);
         notifyListeners();
-        log(downloadUrl!);
+        return downloadUrl;
       } else {
         log('image is null');
+        return '';
       }
     } catch (e) {
       log('got an error of $e');
       rethrow;
     }
-    notifyListeners();
   }
 
   Future getImage(ImageSource source) async {

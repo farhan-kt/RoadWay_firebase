@@ -78,8 +78,8 @@ class AuthenticationProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> getOtp(phoneNumber) async {
-    await authService.getOtp(phoneNumber);
+  Future<void> getOtp(context, phoneCon) async {
+    await authService.getOtp(context, phoneCon);
     notifyListeners();
   }
 

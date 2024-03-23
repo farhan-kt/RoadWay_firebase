@@ -5,7 +5,6 @@ import 'package:car_sale_firebase/widget/button_widget.dart';
 import 'package:car_sale_firebase/widget/snackbar_widget.dart';
 import 'package:car_sale_firebase/widget/textstyle_widget.dart';
 import 'package:car_sale_firebase/controller/authentication_provider.dart';
-import 'package:car_sale_firebase/view/authentication_screens.dart/otp_page.dart';
 import 'package:car_sale_firebase/view/authentication_screens.dart/widgets/login_widgets.dart';
 
 class PhoneScreen extends StatelessWidget {
@@ -46,20 +45,14 @@ class PhoneScreen extends StatelessWidget {
                       context,
                     )),
                 ButtonWidgets().rectangleButton(size, name: 'GENERATE OTP',
-                    onPressed: () {
+                    onPressed: () async {
                   if (authProvider.otpFormKey.currentState!.validate()) {
                     try {
                       authProvider.getOtp(
-                          // '+91${
-
-                          authProvider.phoneController.text
-                          // }'
-                          );
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => OtpScreen()));
-                      authProvider.clearPhoneController();
+                          context, authProvider.phoneController.text);
                       SnackBarWidget().showSuccessSnackbar(
                           context, 'OTP had send successfully');
+                      authProvider.clearPhoneController();
                     } catch (e) {
                       SnackBarWidget().showErrorSnackbar(
                           context, 'Please enter a valid mobile number');
