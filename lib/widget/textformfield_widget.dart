@@ -1,5 +1,6 @@
 import 'package:car_sale_firebase/controller/car_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 class CustomTextFormField extends StatelessWidget {
@@ -13,6 +14,7 @@ class CustomTextFormField extends StatelessWidget {
   final Widget? suffixIcon;
   final String? validateMsg;
   final TextInputType? keyboardType;
+  final List<TextInputFormatter>? inputFormatters;
 
   const CustomTextFormField({
     super.key,
@@ -25,6 +27,7 @@ class CustomTextFormField extends StatelessWidget {
     this.suffixIcon,
     this.validateMsg,
     this.keyboardType,
+    this.inputFormatters,
   });
 
   @override
@@ -39,6 +42,7 @@ class CustomTextFormField extends StatelessWidget {
         }
       },
       keyboardType: keyboardType,
+      inputFormatters: inputFormatters,
       controller: controller,
       decoration: InputDecoration(
           suffixIcon: suffixIcon,

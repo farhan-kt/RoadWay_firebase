@@ -1,7 +1,7 @@
 import 'package:lottie/lottie.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:car_sale_firebase/view/admin/admin_data.dart';
+import 'package:car_sale_firebase/view/admin/admin_home.dart';
 import 'package:car_sale_firebase/controller/car_provider.dart';
 import 'package:car_sale_firebase/widget/textstyle_widget.dart';
 import 'package:car_sale_firebase/view/home/car_details_screen.dart';

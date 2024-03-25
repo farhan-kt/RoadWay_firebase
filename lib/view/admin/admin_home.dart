@@ -4,6 +4,7 @@ import 'dart:developer';
 import 'dart:io';
 import 'package:car_sale_firebase/view/admin/widgets/admin_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:car_sale_firebase/model/car_model.dart';
@@ -102,6 +103,10 @@ class AdminAddDataScreen extends StatelessWidget {
                                 CustomTextFormField(
                                   labelText: 'Kms',
                                   keyboardType: TextInputType.number,
+                                  inputFormatters: [
+                                    FilteringTextInputFormatter.allow(
+                                        RegExp(r'[0-9]'))
+                                  ],
                                   controller: carProvider.kmController,
                                   enabledBorder: inputBorderColor,
                                   focusedBorder: inputBorderColor,
@@ -120,6 +125,10 @@ class AdminAddDataScreen extends StatelessWidget {
                                 CustomTextFormField(
                                   labelText: 'Price',
                                   controller: carProvider.priceController,
+                                  inputFormatters: [
+                                    FilteringTextInputFormatter.allow(
+                                        RegExp(r'[0-9]'))
+                                  ],
                                   keyboardType: TextInputType.number,
                                   enabledBorder: inputBorderColor,
                                   focusedBorder: inputBorderColor,

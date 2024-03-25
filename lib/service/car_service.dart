@@ -34,11 +34,6 @@ class CarService {
   Future<void> deleteCar(String id) async {
     try {
       await car.doc(id).delete();
-      // Optionally, you can also delete the associated image from Firebase Storage
-      // If the car has an associated image and you want to delete it as well
-      // Example:
-
-      // await storage.child('productImage/$id.jpg').delete();
     } catch (e) {
       log('Error while deleting car: $e');
     }
