@@ -93,32 +93,6 @@ class AuthenticationService {
     }
   }
 
-  // Future<void> getOtp(String phoneNumber) async {
-  //   try {
-  //     await firebaseAuth.verifyPhoneNumber(
-  //         phoneNumber: phoneNumber,
-  //         verificationCompleted: (PhoneAuthCredential) async {
-  //           await firebaseAuth.signInWithCredential(PhoneAuthCredential);
-  //           User? user = FirebaseAuth.instance.currentUser;
-  //           if (user != null) {
-  //             await user.updatePhoneNumber(PhoneAuthCredential);
-  //           }
-  //         },
-  //         verificationFailed: (error) {
-  //           log('verification failed due to :$error');
-  //         },
-  //         codeSent: (verificationId, forceResendingToken) {
-  //           verificationid = verificationId;
-  //         },
-  //         codeAutoRetrievalTimeout: (verificationId) {
-  //           verificationid = verificationId;
-  //         },
-  //         timeout: const Duration(seconds: 60));
-  //   } catch (e) {
-  //     log('sign in error due to :$e');
-  //   }
-  // }
-
   Future<void> getOtp(context, phoneNumberCon) async {
     await FirebaseAuth.instance.verifyPhoneNumber(
         verificationCompleted: (PhoneAuthCredential credential) {},

@@ -54,7 +54,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyCEiQlN7tY196q1FLeSsZ9SDmdNJEqubds',
-    appId: '1:825528106452:android:94b004f074c44df8842a41',
+    appId: '1:825528106452:android:5a48e75813f161c4842a41',
     messagingSenderId: '825528106452',
     projectId: 'roadway-carsale',
     storageBucket: 'roadway-carsale.appspot.com',

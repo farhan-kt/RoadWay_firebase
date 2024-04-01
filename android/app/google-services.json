@@ -48,6 +48,42 @@
           ]
         }
       }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:825528106452:android:5a48e75813f161c4842a41",
+        "android_client_info": {
+          "package_name": "in.bridgeon.RoadWay_used_car"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "825528106452-knvhnh2uju5ieqscv8pegnjp60jhbgq9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCEiQlN7tY196q1FLeSsZ9SDmdNJEqubds"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "825528106452-knvhnh2uju5ieqscv8pegnjp60jhbgq9.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "825528106452-0ridhjjl27amgn00mediogdbahe3n254.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.carSaleFirebase.RunnerTests"
+              }
+            }
+          ]
+        }
+      }
     }
   ],
   "configuration_version": "1"

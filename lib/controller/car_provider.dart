@@ -71,7 +71,6 @@ class CarProvider extends ChangeNotifier {
 
   void getAllCar() async {
     isLoading = true;
-
     allCarList = await carService.getAllCars();
     isLoading = false;
     notifyListeners();
